@@ -1,0 +1,6 @@
+c:\users\olire\documents\visual studio 2015\Projects\MAD_du\MAD_du\bin\Debug\MAD_du.exe.config
+c:\users\olire\documents\visual studio 2015\Projects\MAD_du\MAD_du\bin\Debug\MAD_du.exe
+c:\users\olire\documents\visual studio 2015\Projects\MAD_du\MAD_du\bin\Debug\MAD_du.pdb
+c:\users\olire\documents\visual studio 2015\Projects\MAD_du\MAD_du\obj\Debug\MAD_du.csprojResolveAssemblyReference.cache
+c:\users\olire\documents\visual studio 2015\Projects\MAD_du\MAD_du\obj\Debug\MAD_du.exe
+c:\users\olire\documents\visual studio 2015\Projects\MAD_du\MAD_du\obj\Debug\MAD_du.pdb
