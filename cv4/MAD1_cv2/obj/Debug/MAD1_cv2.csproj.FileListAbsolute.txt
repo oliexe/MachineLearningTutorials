@@ -4,3 +4,9 @@ c:\users\olire\documents\visual studio 2015\Projects\MAD1_cv2\MAD1_cv2\bin\Debug
 c:\users\olire\documents\visual studio 2015\Projects\MAD1_cv2\MAD1_cv2\obj\Debug\MAD1_cv2.csprojResolveAssemblyReference.cache
 c:\users\olire\documents\visual studio 2015\Projects\MAD1_cv2\MAD1_cv2\obj\Debug\MAD1_cv2.exe
 c:\users\olire\documents\visual studio 2015\Projects\MAD1_cv2\MAD1_cv2\obj\Debug\MAD1_cv2.pdb
+C:\Users\olire\Documents\GitHub\MAD1\cv4\MAD1_cv2\bin\Debug\MAD1_cv2.exe.config
+C:\Users\olire\Documents\GitHub\MAD1\cv4\MAD1_cv2\obj\Debug\MAD1_cv2.exe
+C:\Users\olire\Documents\GitHub\MAD1\cv4\MAD1_cv2\obj\Debug\MAD1_cv2.pdb
+C:\Users\olire\Documents\GitHub\MAD1\cv4\MAD1_cv2\bin\Debug\MAD1_cv2.exe
+C:\Users\olire\Documents\GitHub\MAD1\cv4\MAD1_cv2\bin\Debug\MAD1_cv2.pdb
+C:\Users\olire\Documents\GitHub\MAD1\cv4\MAD1_cv2\obj\Debug\MAD1_cv2.csprojResolveAssemblyReference.cache

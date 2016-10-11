@@ -62,10 +62,15 @@ namespace MAD1_cv2
             Console.WriteLine("Variance: " + GetVariance(petalwid_list));
             Console.WriteLine("Deviation: " + GetStdDev(petalwid_list));
             Console.WriteLine("Median: " + GetMedian(petalwid_list));
-            Console.ReadKey();
-          }
 
-        //Median
+
+            double[,] lol = GenerateEuclid(list);
+            CSVgenerator(lol, "euklid.csv");
+
+            Console.ReadKey();
+        }
+
+        //Median (na double poli)
         public static double GetMedian(List<double> source)
         {
             double[] sourceNumbers = source.ToArray();
@@ -77,14 +82,14 @@ namespace MAD1_cv2
             return median;
         }
 
-        //Pruměr
+        //Pruměr (na double poli)
         public static double GetAverage(List<double> source)
         {
             double[] sourceNumbers = source.ToArray();
             return sourceNumbers.Take(sourceNumbers.Count()).Average();
         }
 
-        //Standartní odchylka
+        //Standartní odchylka (na double poli)
         public static double GetStdDev(List<double> source)
         {
             double ret = 0;
@@ -97,7 +102,7 @@ namespace MAD1_cv2
             return ret;
         }
 
-        //Rozptyl
+        //Rozptyl (na double poli)
         public static double GetVariance(List<double> source)
         {
             double variance = 0;
@@ -110,6 +115,56 @@ namespace MAD1_cv2
             return variance / (source.Count);
         }
 
+        //Euklidovská vzdálenost
+        public static double GetEuclidDist(iris a, iris b)
+        {
+            double dist = Math.Sqrt(((a.sepallen - b.sepallen) *  (a.sepallen - b.sepallen) + 
+                (a.sepalwid - b.sepalwid) * (a.sepalwid - b.sepalwid) +
+                (a.petallen - b.petallen) * (a.petallen - b.petallen) +
+                (a.petalwid - b.petalwid) * (a.petalwid - b.petalwid)
+                ));
+            return dist;
+        }
+
+        //Generovat euklidovské vzalenosti
+        public static double[,] GenerateEuclid(List<iris> source)
+        {
+
+            Console.WriteLine("Vypocet euklidovskych vzdalenosti....");
+
+            double[,] x = new double[source.Count,source.Count];
+
+            for (int i = 0; i < source.Count(); i++)
+                {
+                    for (int z = 0; z < source.Count(); z++)
+                    {
+                    x[i,z] = GetEuclidDist(source[i], source[z]);
+                    }
+                }
+            return x;
+        }
+
+        //zapis do CSV
+        public static void CSVgenerator(double[,] source, string filename)
+        {
+        using (StreamWriter writer =
+        new StreamWriter(filename))
+            {
+                double[,] x = source;
+
+                for (int i = 0; i < 150; i++)
+                {
+                    for (int z = 0; z < 150; z++)
+                    {
+                        writer.Write(x[i,z] + ",");
+                    }
+                    writer.WriteLine();
+                }
+            }
+            Console.WriteLine(filename + " generated!");
+
+        
+        }
 
     }
 }
