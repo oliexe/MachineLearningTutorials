@@ -64,8 +64,11 @@ namespace MAD1_cv2
             Console.WriteLine("Median: " + GetMedian(petalwid_list));
 
 
-            double[,] lol = GenerateEuclid(list);
-            CSVgenerator(lol, "euklid.csv");
+            double[,] euclid = GenerateEuclid(list);
+            CSVgenerator(euclid, "euclid.csv");
+
+            double[,] cosine = GenerateCosine(list);
+            CSVgenerator(cosine, "cosine.csv");
 
             Console.ReadKey();
         }
@@ -126,7 +129,27 @@ namespace MAD1_cv2
             return dist;
         }
 
-        //Generovat euklidovské vzalenosti
+        //https://bioinformatics.oxfordjournals.org/content/suppl/2009/10/24/btp613.DC1/bioinf-2008-1835-File004.pdf
+        //Cosinova podobnost
+        public static double GetCosineDist(iris a, iris b)
+        {
+            double dist1 = (a.sepallen * b.sepallen) + (a.sepalwid * b.sepalwid) + (a.petallen * b.petallen) + (a.petalwid * b.petalwid);
+            double dist2 = Math.Sqrt(
+                (a.sepallen * a.sepallen) + 
+                (a.sepalwid * a.sepalwid) + 
+                (a.petallen * a.petallen) + 
+                (a.petalwid * a.petalwid)
+                ) * Math.Sqrt(
+                (b.sepallen * b.sepallen) +
+                (b.sepalwid * b.sepalwid) +
+                (b.petallen * b.petallen) +
+                (b.petalwid * b.petalwid)
+                );
+
+            return dist1 / dist2;
+        }
+
+        //Generovat euklidovské vzalenosti pro cely dataset
         public static double[,] GenerateEuclid(List<iris> source)
         {
 
@@ -141,6 +164,24 @@ namespace MAD1_cv2
                     x[i,z] = GetEuclidDist(source[i], source[z]);
                     }
                 }
+            return x;
+        }
+
+        //Generovat cos podobnost pro cely dataset
+        public static double[,] GenerateCosine(List<iris> source)
+        {
+
+            Console.WriteLine("Vypocet cos podobnosti....");
+
+            double[,] x = new double[source.Count, source.Count];
+
+            for (int i = 0; i < source.Count(); i++)
+            {
+                for (int z = 0; z < source.Count(); z++)
+                {
+                    x[i, z] = GetCosineDist(source[i], source[z]);
+                }
+            }
             return x;
         }
 
