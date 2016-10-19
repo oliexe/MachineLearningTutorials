@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OxyPlot;
+using OxyPlot.Series;
+using OxyPlot.Axes;
 
 namespace MAD1_cv2
 {
@@ -41,6 +44,7 @@ namespace MAD1_cv2
             Console.WriteLine("Variance: " + GetVariance(sepallen_list));
             Console.WriteLine("Deviation: " + GetStdDev(sepallen_list));
             Console.WriteLine("Median: " + GetMedian(sepallen_list));
+            isNoramalDistribution(sepallen_list, GetAverage(sepallen_list), GetStdDev(petalwid_list));
             Console.WriteLine();
 
             Console.WriteLine("SEPAL WIDTH");
@@ -48,6 +52,7 @@ namespace MAD1_cv2
             Console.WriteLine("Variance: " + GetVariance(sepalwid_list));
             Console.WriteLine("Deviation: " + GetStdDev(sepalwid_list));
             Console.WriteLine("Median: " + GetMedian(sepalwid_list));
+            isNoramalDistribution(sepalwid_list, GetAverage(sepalwid_list), GetStdDev(sepalwid_list));
             Console.WriteLine();
 
             Console.WriteLine("PETAL LENGTH");
@@ -55,6 +60,7 @@ namespace MAD1_cv2
             Console.WriteLine("Variance: " + GetVariance(petallen_list));
             Console.WriteLine("Deviation: " + GetStdDev(petallen_list));
             Console.WriteLine("Median: " + GetMedian(petallen_list));
+            isNoramalDistribution(petallen_list, GetAverage(petallen_list), GetStdDev(petallen_list));
             Console.WriteLine();
 
             Console.WriteLine("PETAL WIDTH");
@@ -62,13 +68,26 @@ namespace MAD1_cv2
             Console.WriteLine("Variance: " + GetVariance(petalwid_list));
             Console.WriteLine("Deviation: " + GetStdDev(petalwid_list));
             Console.WriteLine("Median: " + GetMedian(petalwid_list));
+            isNoramalDistribution(petalwid_list, GetAverage(petalwid_list), GetStdDev(petalwid_list));
 
+
+            Console.WriteLine();
+            Console.WriteLine();
 
             double[,] euclid = GenerateEuclid(list);
-            CSVgenerator(euclid, "euclid.csv");
+            CSVgenerator(euclid, "euclid_distance.csv");
 
             double[,] cosine = GenerateCosine(list);
-            CSVgenerator(cosine, "cosine.csv");
+            CSVgenerator(cosine, "cosine_similarity.csv");
+
+
+            Occurence(sepallen_list, "sepal_lenght_occurences.csv");
+            Occurence(sepalwid_list, "sepal_width_occurences.csv");
+            Occurence(petallen_list, "petal_lenght_occurences.csv");
+            Occurence(petalwid_list, "petal_width_occurences.csv");
+
+            MakeHistogram(petallen_list, "histogram.pdf");
+
 
             Console.ReadKey();
         }
@@ -153,8 +172,6 @@ namespace MAD1_cv2
         public static double[,] GenerateEuclid(List<iris> source)
         {
 
-            Console.WriteLine("Vypocet euklidovskych vzdalenosti....");
-
             double[,] x = new double[source.Count,source.Count];
 
             for (int i = 0; i < source.Count(); i++)
@@ -171,8 +188,6 @@ namespace MAD1_cv2
         public static double[,] GenerateCosine(List<iris> source)
         {
 
-            Console.WriteLine("Vypocet cos podobnosti....");
-
             double[,] x = new double[source.Count, source.Count];
 
             for (int i = 0; i < source.Count(); i++)
@@ -185,11 +200,139 @@ namespace MAD1_cv2
             return x;
         }
 
+        //četnost - relativni+kumulativni jednotlivých hodnot atributů
+        public static void Occurence(List<double> source , string filename)
+        {
+            int count = 0;
+            using (StreamWriter writer =
+        new StreamWriter(filename))
+            {
+                //Rozdělení hodnot do grup podle hodnot
+                source.Sort();
+                var groups = source.GroupBy(i => i);
+
+            writer.WriteLine("Hodnota,Pocet Vyskytu,Kumulativni cetnost,Kumulativni relativni cetnost,Relativni cetnost");
+                //Sečist vyskyty v jednotlivých grupách
+
+                foreach (var iris in groups)
+            {
+                writer.Write("{0},{1},", iris.Key, iris.Count());
+                count = count + iris.Count();
+                writer.Write(count+",");
+                writer.Write(count / 1.5 + ",");
+                writer.Write(iris.Count() / 1.5);
+                writer.WriteLine();
+            }
+            }
+            Console.WriteLine(filename + " generated!");
+        }
+
+        public static void isNoramalDistribution(List<double> source, double mean, double deviation)
+        {
+            int cOfIsTrue = 0;
+            double p1 = mean - deviation;
+            double p2 = mean + deviation;
+            double numberOfSatisElem = 0;
+            double[] array = source.ToArray();
+
+            // 1 * o 
+            for (int i = 0; i < array.Length; i++)
+            {
+                if ((array[i] >= p1) && (array[i] <= p2))
+                {
+                    numberOfSatisElem++;
+                }
+            }
+
+            if (numberOfSatisElem >= ((array.Length / 100.0) * 68.0))
+            {
+                cOfIsTrue++;
+            }
+
+            numberOfSatisElem = 0;
+            p1 = mean - 2 * deviation;
+            p2 = mean + 2 * deviation;
+
+            // 2 * o
+            for (int i = 0; i < array.Length; i++)
+            {
+                if ((array[i] >= p1) && (array[i] <= p2))
+                {
+                    numberOfSatisElem++;
+                }
+            }
+
+            if (numberOfSatisElem >= ((array.Length / 100.0) * 95.0))
+            {
+                cOfIsTrue++;
+            }
+
+            numberOfSatisElem = 0;
+            p1 = mean - 3 * deviation;
+            p2 = mean + 3 * deviation;
+
+            // 3 * o
+            for (int i = 0; i < array.Length; i++)
+            {
+                if ((array[i] >= p1) && (array[i] <= p2))
+                {
+                    numberOfSatisElem++;
+                }
+            }
+
+            if (numberOfSatisElem >= ((array.Length / 100.0) * 99.7))
+            {
+                cOfIsTrue++;
+            }
+
+            if (cOfIsTrue == 3)
+            {
+                Console.WriteLine("Je normalne rozlozeno");
+            }
+            else
+            {
+                Console.WriteLine("Neni normalne rozlozeno");
+            }
+        }
+
+        public static void MakeHistogram(List<double> source, string filename)
+        {
+            PlotModel graf = new PlotModel();
+            source.Sort();
+            double[] values = source.ToArray();
+            var bucketeer = new Dictionary<double, double>();
+            var groups = source.GroupBy(i => i);
+            List<string> kek = new List<string>();
+
+            foreach (var iris in groups)
+            {
+                bucketeer.Add(iris.Key, iris.Count());
+                kek.Add(iris.Key.ToString());
+            }
+
+            ColumnSeries lol = new ColumnSeries();
+            CategoryAxis lol2 = new CategoryAxis();
+            
+            foreach (var pair in bucketeer.OrderBy(x => x.Key))
+            {
+                lol.Items.Add(new ColumnItem(pair.Value));
+                lol.LabelFormatString = "{0:.00}%";
+            }
+            lol2.ItemsSource = kek;
+            graf.Series.Add(lol);
+            graf.Axes.Add(lol2);
+            using (var stream = File.Create(filename))
+            {
+                var pdfExporter = new PdfExporter { Width = 1000, Height = 400 };
+                pdfExporter.Export(graf, stream);
+            }
+        }
+
         //zapis do CSV
         public static void CSVgenerator(double[,] source, string filename)
         {
-        using (StreamWriter writer =
-        new StreamWriter(filename))
+            using (StreamWriter writer =
+            new StreamWriter(filename))
             {
                 double[,] x = source;
 
@@ -197,14 +340,12 @@ namespace MAD1_cv2
                 {
                     for (int z = 0; z < 150; z++)
                     {
-                        writer.Write(x[i,z] + ",");
+                        writer.Write(x[i, z] + ",");
                     }
                     writer.WriteLine();
                 }
             }
             Console.WriteLine(filename + " generated!");
-
-        
         }
 
     }
