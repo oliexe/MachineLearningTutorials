@@ -31,3 +31,5 @@ C:\Users\olire\Documents\GitHub\MAD1\cv4\MAD1_cv2\bin\Debug\de\MigraDoc.Renderin
 C:\Users\olire\Documents\GitHub\MAD1\cv4\MAD1_cv2\bin\Debug\de\MigraDoc.RtfRendering.resources.dll
 C:\Users\olire\Documents\GitHub\MAD1\cv4\MAD1_cv2\bin\Debug\de\PdfSharp.resources.dll
 C:\Users\olire\Documents\GitHub\MAD1\cv4\MAD1_cv2\bin\Debug\de\PdfSharp.Charting.resources.dll
+C:\Users\olire\Documents\GitHub\MAD1\cv4\MAD1_cv2\bin\Debug\MathNet.Numerics.dll
+C:\Users\olire\Documents\GitHub\MAD1\cv4\MAD1_cv2\bin\Debug\MathNet.Numerics.xml

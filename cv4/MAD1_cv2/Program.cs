@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using OxyPlot;
 using OxyPlot.Series;
 using OxyPlot.Axes;
+using MathNet.Numerics.Distributions;
+using MathNet.Numerics.Random;
 
 namespace MAD1_cv2
 {
@@ -80,14 +82,15 @@ namespace MAD1_cv2
             double[,] cosine = GenerateCosine(list);
             CSVgenerator(cosine, "cosine_similarity.csv");
 
-
             Occurence(sepallen_list, "sepal_lenght_occurences.csv");
             Occurence(sepalwid_list, "sepal_width_occurences.csv");
             Occurence(petallen_list, "petal_lenght_occurences.csv");
             Occurence(petalwid_list, "petal_width_occurences.csv");
 
-            MakeHistogram(petallen_list, "histogram.pdf");
-
+            MakeGraphs(sepallen_list, "sepal_lenght");
+            MakeGraphs(sepalwid_list, "sepal_width");
+            MakeGraphs(petallen_list, "petal_lenght");
+            MakeGraphs(petalwid_list, "petal_width");
 
             Console.ReadKey();
         }
@@ -295,37 +298,92 @@ namespace MAD1_cv2
             }
         }
 
-        public static void MakeHistogram(List<double> source, string filename)
+
+        public static double Z(double score, double average, double standardDeviation)
         {
-            PlotModel graf = new PlotModel();
+            if (standardDeviation == 0) return 0;
+
+            return (score - average) / standardDeviation;
+        }
+
+        public static double PDFfce(double x)
+        {
+            var exponent = -1 * (0.5 * Math.Pow(x, 2));
+            var numerator = Math.Pow(Math.E, exponent);
+            var denominator = Math.Sqrt(2 * Math.PI);
+            return numerator / denominator;
+        }
+
+        public static void MakeGraphs(List<double> source, string filename)
+        {
+            int count = 0;
+            PlotModel graf = new PlotModel { Title = "Histogram " + filename };
+            PlotModel graf_cdf = new PlotModel { Title = "Comulative density (CDF) " + filename };
+            PlotModel graf_pdf = new PlotModel { Title = "Probability (PDF) " + filename };
             source.Sort();
+
             double[] values = source.ToArray();
             var bucketeer = new Dictionary<double, double>();
             var groups = source.GroupBy(i => i);
             List<string> kek = new List<string>();
 
+            var overlayData = new LineSeries();
+            var PDF = new LineSeries();
+
+            int z = 0;
             foreach (var iris in groups)
             {
                 bucketeer.Add(iris.Key, iris.Count());
                 kek.Add(iris.Key.ToString());
+                count = count + iris.Count();
+                z++;
+
+                overlayData.Points.Add(new DataPoint(z, count / 1.5));
+                PDF.Points.Add(new DataPoint(z, PDFfce(Z(iris.Key, GetAverage(source), GetStdDev(source)))));
             }
 
-            ColumnSeries lol = new ColumnSeries();
-            CategoryAxis lol2 = new CategoryAxis();
+            ColumnSeries ColSer = new ColumnSeries();
+            CategoryAxis Axis = new CategoryAxis();
             
             foreach (var pair in bucketeer.OrderBy(x => x.Key))
             {
-                lol.Items.Add(new ColumnItem(pair.Value));
-                lol.LabelFormatString = "{0:.00}%";
+                ColSer.Items.Add(new ColumnItem(pair.Value));                
             }
-            lol2.ItemsSource = kek;
-            graf.Series.Add(lol);
-            graf.Axes.Add(lol2);
-            using (var stream = File.Create(filename))
+
+            Axis.ItemsSource = kek;
+            CategoryAxis Axis2 = new CategoryAxis();
+            Axis2.ItemsSource = kek;
+            CategoryAxis Axis3 = new CategoryAxis();
+            Axis3.ItemsSource = kek;
+
+            graf.Series.Add(ColSer);
+            graf.Axes.Add(Axis);
+
+            graf_cdf.Series.Add(overlayData);
+            graf_cdf.Axes.Add(Axis2);
+
+            graf_pdf.Series.Add(PDF);
+            graf_pdf.Axes.Add(Axis3);
+
+
+            using (var stream = File.Create(filename + "_histogram.pdf"))
             {
                 var pdfExporter = new PdfExporter { Width = 1000, Height = 400 };
                 pdfExporter.Export(graf, stream);
             }
+
+            using (var stream = File.Create(filename + "_CDF.pdf"))
+            {
+                var pdfExporter = new PdfExporter { Width = 1000, Height = 400 };
+                pdfExporter.Export(graf_cdf, stream);
+            }
+
+            using (var stream = File.Create(filename + "_PDF.pdf"))
+            {
+                var pdfExporter = new PdfExporter { Width = 1000, Height = 400 };
+                pdfExporter.Export(graf_pdf, stream);
+            }
+
         }
 
         //zapis do CSV
