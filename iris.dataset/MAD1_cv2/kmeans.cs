@@ -21,11 +21,9 @@ namespace MAD1_cv2
         private bool print = new bool();
 
         //Grafování rozložení x,y
-        public void AddToGraph(List<double> x, List<double> y, int ClusterNum,  byte r, byte g, byte b)
+        public void AddToGraph(List<double> x, List<double> y, int ClusterNum, byte r, byte g, byte b)
         {
             var scatterSeries = new ScatterSeries { MarkerType = MarkerType.Cross, MarkerStroke = OxyColor.FromRgb(r, g, b) };
-
-           
 
             for (int i = 0; i < x.Count; i++)
             {
@@ -48,17 +46,17 @@ namespace MAD1_cv2
 
             graf.Series.Add(scatterSeries2);
 
-            using (var stream = File.Create("kmeans.pdf"))
+            using (var stream = File.Create("output/kmeans-" + _clusters.Count +".pdf"))
             {
                 var pdfExporter = new PdfExporter { Width = 1000, Height = 400 };
                 pdfExporter.Export(graf, stream);
-                Console.WriteLine("k-means graph generated!");
             }
         }
 
         public byte[] GetRandomColor()
         {
-            Random r = new Random(DateTime.Now.Millisecond);
+            System.Threading.Thread.Sleep(50);
+            Random r = new Random(DateTime.UtcNow.Millisecond);
 
             return new byte[] { (byte)r.Next(0, 255), (byte)r.Next(0, 255), (byte)r.Next(0, 255) };
         }
@@ -71,15 +69,6 @@ namespace MAD1_cv2
                 _rawDataToCluster.Add(new meansPoint(Width[i], Lenght[i]));
             }
         }
-
-
-        public void reset()
-        {
-            _normalizedDataToCluster = null;
-            _clusters = null;
-            _numberOfClusters = 0;
-    }
-
 
         //Normalizace bodů (Je třeba ?)
         private void NormalizeData()
@@ -226,25 +215,19 @@ namespace MAD1_cv2
                     changed = true;
                     _normalizedDataToCluster[i].Cluster = _rawDataToCluster[i].Cluster = newClusterId;
 
-
                     if (print)
                     {
-                        Console.WriteLine("Width: " + _rawDataToCluster[i].Width + ", Lenght: " +
+                    Console.WriteLine("Width: " + _rawDataToCluster[i].Width + ", Lenght: " +
                     _rawDataToCluster[i].Length + " ----> Cluster " + newClusterId);
                     }
                 }
-
+                //SSE pro cluster
                 sse_count[newClusterId] = sse_count[newClusterId] + Math.Pow(distances.Min(), 2);
-               
-
-              
             }
 
+            //SSE celkové
             for (int o = 0; o < sse_count.Length; o++)
-            {
-                result = result + sse_count[o];
-            }
-
+            {result = result + sse_count[o];}
             sse = result;
 
             if (changed == false)
@@ -297,6 +280,7 @@ namespace MAD1_cv2
         public void Execute(int NumberOfClusters, bool print)
         {
             this.print = print;
+
             SetClusters(NumberOfClusters);
 
             for (int i = 0; i < _numberOfClusters; i++)
@@ -320,32 +304,41 @@ namespace MAD1_cv2
                 _changed = UpdateClusterMembership();
             }
 
-            if (print)
-            {
+            
                 var group = _rawDataToCluster.GroupBy(s => s.Cluster).OrderBy(s => s.Key);
 
                 foreach (var g in group)
                 {
+
+                if (print)
+                {
                     Console.WriteLine("Cluster " + g.Key + ":");
+                }
 
-                    List<double> Wid = new List<double>();
-                    List<double> Len = new List<double>();
-
-
+                List<double> Wid = new List<double>();
+                List<double> Len = new List<double>();              
                     foreach (var value in g)
                     {
-                        Console.WriteLine(value.ToString());
+
+                    if (print)
+                     Console.WriteLine(value.ToString());
+                    
                         Wid.Add(value.Width);
                         Len.Add(value.Length);
+                    
                     }
 
                     byte[] color = GetRandomColor();
 
                     AddToGraph(Wid, Len, g.Key, color[0], color[1], color[2]);
+
+                if (print)
+                {
                     Console.WriteLine("------------------------------");
-                    GenerateGraph();
                 }
             }
+            
+            GenerateGraph();
             Console.WriteLine("SSE pro k = " + _clusters.Count + " je " + sse);           
         }
 

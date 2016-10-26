@@ -39,10 +39,11 @@ namespace MAD1_cv2
                 petalwid_list.Add(line.petalwid);
             }
 
-            System.IO.Directory.CreateDirectory("sepal_lenght");
-            System.IO.Directory.CreateDirectory("sepal_width");
-            System.IO.Directory.CreateDirectory("petal_lenght");
-            System.IO.Directory.CreateDirectory("petal_width");
+            System.IO.Directory.CreateDirectory("output");
+            System.IO.Directory.CreateDirectory("output/sepal_lenght");
+            System.IO.Directory.CreateDirectory("output/sepal_width");
+            System.IO.Directory.CreateDirectory("output/petal_lenght");
+            System.IO.Directory.CreateDirectory("output/petal_width");
 
             Console.WriteLine("SEPAL LENGTH");           
             Console.WriteLine("Average: " + GetAverage(sepallen_list));
@@ -81,20 +82,20 @@ namespace MAD1_cv2
             Console.ReadKey();
 
             double[,] euclid = GenerateEuclid(list);
-            CSVgenerator(euclid, "euclid_distance.csv");
+            CSVgenerator(euclid, "output/euclid_distance.csv");
 
             double[,] cosine = GenerateCosine(list);
-            CSVgenerator(cosine, "cosine_similarity.csv");
+            CSVgenerator(cosine, "output/cosine_similarity.csv");
 
-            Occurence(sepallen_list, "sepal_lenght/occurences.csv");
-            Occurence(sepalwid_list, "sepal_width/occurences.csv");
-            Occurence(petallen_list, "petal_lenght/occurences.csv");
-            Occurence(petalwid_list, "petal_width/occurences.csv");
+            Occurence(sepallen_list, "output/sepal_lenght/occurences.csv");
+            Occurence(sepalwid_list, "output/sepal_width/occurences.csv");
+            Occurence(petallen_list, "output/petal_lenght/occurences.csv");
+            Occurence(petalwid_list, "output/petal_width/occurences.csv");
 
-            MakeGraphs(sepallen_list, "sepal_lenght/graph");
-            MakeGraphs(sepalwid_list, "sepal_width/graph");
-            MakeGraphs(petallen_list, "petal_lenght/graph");
-            MakeGraphs(petalwid_list, "petal_width/graph");
+            MakeGraphs(sepallen_list, "output/sepal_lenght/graph");
+            MakeGraphs(sepalwid_list, "output/sepal_width/graph");
+            MakeGraphs(petallen_list, "output/petal_lenght/graph");
+            MakeGraphs(petalwid_list, "output/petal_width/graph");
 
             Console.WriteLine();
             Console.WriteLine();
@@ -106,9 +107,9 @@ namespace MAD1_cv2
             Console.ReadKey();
 
             Kmeans k_means2 = new Kmeans();
-            k_means2.InitData(petalwid_list, petallen_list);
-            k_means2.InitData(sepalwid_list, sepallen_list);
-            k_means2.Execute(2, true);
+            k_means2.InitData(sepallen_list, sepalwid_list);
+            k_means2.InitData(petallen_list, petalwid_list);
+            k_means2.Execute(5, true);
 
             Console.ReadKey();
 
