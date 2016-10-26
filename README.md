@@ -1,9 +1,8 @@
 # MAD1
-Data Mining
-
+My "data mining experiments" :)
 
 Playground Set
-+ Classification Tree
++ Classification Tree (Decision tree learning)
 
 Iris set
 + Euclidean distance
@@ -14,7 +13,4 @@ Iris set
 + CDF, PDF
 + k-means algorithm
 + SSE for k-means
-+ Graphing
-++ Ocurences (Histogram)
-++ CDF, PDF
-++ k-means scatter
++ Graphing of ocurences (Histogram), CDF, PDF, k-means scatter
