@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MAD1_cv2
 {
-    class iris
+    class Iris
     {
         public double sepallen;
         public double sepalwid;
@@ -14,7 +14,7 @@ namespace MAD1_cv2
         public double petalwid;
         public string species;
 
-        public iris(double sepallen, double sepalwid, double petallen, double petalwid, string species)
+        public Iris(double sepallen, double sepalwid, double petallen, double petalwid, string species)
         {
             this.sepallen = sepallen;
             this.sepalwid = sepalwid;

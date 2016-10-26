@@ -10,29 +10,44 @@ using System.IO;
 
 namespace MAD1_cv2
 {
-    public class kmeans
+    public class Kmeans
     {
         List<meansPoint> _rawDataToCluster = new List<meansPoint>();
         List<meansPoint> _normalizedDataToCluster = new List<meansPoint>();
         List<meansPoint> _clusters = new List<meansPoint>();
         private int _numberOfClusters = 0;
         PlotModel graf = new PlotModel();
+        private double sse = new double();
+        private bool print = new bool();
 
         //Grafování rozložení x,y
-        public void AddToGraph(List<double> x, List<double> y, byte r, byte g, byte b)
+        public void AddToGraph(List<double> x, List<double> y, int ClusterNum,  byte r, byte g, byte b)
         {
             var scatterSeries = new ScatterSeries { MarkerType = MarkerType.Cross, MarkerStroke = OxyColor.FromRgb(r, g, b) };
+
+           
 
             for (int i = 0; i < x.Count; i++)
             {
                 scatterSeries.Points.Add(new ScatterPoint(x[i], y[i]));
             }
 
+          
             graf.Series.Add(scatterSeries);
         }
 
+
         public void GenerateGraph()
         {
+            var scatterSeries2 = new ScatterSeries { MarkerType = MarkerType.Diamond, MarkerStroke = OxyColor.FromRgb(0, 0, 0) };
+
+            for (int i = 0; i < _clusters.Count; i++)
+            {
+                scatterSeries2.Points.Add(new ScatterPoint(_clusters[i].Width, _clusters[i].Length));
+            }
+
+            graf.Series.Add(scatterSeries2);
+
             using (var stream = File.Create("kmeans.pdf"))
             {
                 var pdfExporter = new PdfExporter { Width = 1000, Height = 400 };
@@ -57,7 +72,16 @@ namespace MAD1_cv2
             }
         }
 
-        //Normalizace bodů
+
+        public void reset()
+        {
+            _normalizedDataToCluster = null;
+            _clusters = null;
+            _numberOfClusters = 0;
+    }
+
+
+        //Normalizace bodů (Je třeba ?)
         private void NormalizeData()
         {
             double widthSum = 0.0;
@@ -91,6 +115,9 @@ namespace MAD1_cv2
                 }
                 );
             }
+
+            //??
+            _normalizedDataToCluster = _rawDataToCluster;
         }
 
         //Nastavit počet clusetru
@@ -120,13 +147,13 @@ namespace MAD1_cv2
         {
             Random random = new Random(_numberOfClusters);
 
-            //Přiřadime nahodný DataPoint zvolenému clusteru (Aspon jeden centroid má jeden DatatPoint)
+            //Prvních x budou centroidy clusterů
             for (int i = 0; i < _numberOfClusters; ++i)
             {
                 _normalizedDataToCluster[i].Cluster = _rawDataToCluster[i].Cluster = i;
             }
 
-            //Zbytku DataPointu přiřadíme náhodné centroidy 
+            //Zbyty datapointu přiřadima do nahodných clusterů
             //Nějaké "aribtary clusters" u kterých dojde k přehodnocení
             for (int i = _numberOfClusters; i < _normalizedDataToCluster.Count; i++)
             {
@@ -180,22 +207,46 @@ namespace MAD1_cv2
 
             double[] distances = new double[_numberOfClusters];
 
+            double[] sse_count = new double[_numberOfClusters];
+
+            double result = 0;
+
             for (int i = 0; i < _normalizedDataToCluster.Count; ++i)
             {
 
                 for (int k = 0; k < _numberOfClusters; ++k)
+                {
                     distances[k] = ElucidanDistance(_normalizedDataToCluster[i], _clusters[k]);
+                }
 
                 int newClusterId = MinIndex(distances);
+
                 if (newClusterId != _normalizedDataToCluster[i].Cluster)
                 {
                     changed = true;
                     _normalizedDataToCluster[i].Cluster = _rawDataToCluster[i].Cluster = newClusterId;
 
-                    Console.WriteLine("Data Point >> Width: " + _rawDataToCluster[i].Width + ", Lenght: " +
-                    _rawDataToCluster[i].Length + " moved to Cluster # " + newClusterId);
+
+                    if (print)
+                    {
+                        Console.WriteLine("Width: " + _rawDataToCluster[i].Width + ", Lenght: " +
+                    _rawDataToCluster[i].Length + " ----> Cluster " + newClusterId);
+                    }
                 }
+
+                sse_count[newClusterId] = sse_count[newClusterId] + Math.Pow(distances.Min(), 2);
+               
+
+              
             }
+
+            for (int o = 0; o < sse_count.Length; o++)
+            {
+                result = result + sse_count[o];
+            }
+
+            sse = result;
+
             if (changed == false)
                 return false;
             if (IsClusterEmpty(_normalizedDataToCluster)) return false;
@@ -218,11 +269,34 @@ namespace MAD1_cv2
             return _indexOfMin;
         }
 
+
+        public void SSE()
+        {
+
+            double result = 0;
+            double result_cluster = 0;
+
+            for (int i = 0; i < _clusters.Count; i++)
+            {
+
+                for (int z = 0; z < _rawDataToCluster.Count; z++)
+                {
+                    if (_rawDataToCluster[z].Cluster == _clusters[i].Cluster)
+                    {
+                        result_cluster = result + ElucidanDistance(_rawDataToCluster[z], _clusters[i]);
+                    }
+                }
+
+                result = result + result_cluster;
+            }
+
+            Console.WriteLine("SSE: " + result.ToString());
+        }
+
         //Spustit k-means
         public void Execute(int NumberOfClusters, bool print)
         {
-            Console.WriteLine();
-            Console.WriteLine("K-means...");
+            this.print = print;
             SetClusters(NumberOfClusters);
 
             for (int i = 0; i < _numberOfClusters; i++)
@@ -236,9 +310,9 @@ namespace MAD1_cv2
             NormalizeData();
             InitializeCentroids();
             
-
-            int maxIteration = _normalizedDataToCluster.Count * 10;
+            int maxIteration = _normalizedDataToCluster.Count * 1000000;
             int _threshold = 0;
+
             while (_success == true && _changed == true && _threshold < maxIteration)
             {
                 ++_threshold;
@@ -252,7 +326,7 @@ namespace MAD1_cv2
 
                 foreach (var g in group)
                 {
-                    Console.WriteLine("Cluster # " + g.Key + ":");
+                    Console.WriteLine("Cluster " + g.Key + ":");
 
                     List<double> Wid = new List<double>();
                     List<double> Len = new List<double>();
@@ -267,15 +341,15 @@ namespace MAD1_cv2
 
                     byte[] color = GetRandomColor();
 
-                    AddToGraph(Wid, Len, color[0], color[1], color[2]);
+                    AddToGraph(Wid, Len, g.Key, color[0], color[1], color[2]);
                     Console.WriteLine("------------------------------");
+                    GenerateGraph();
                 }
-                GenerateGraph();
             }
+            Console.WriteLine("SSE pro k = " + _clusters.Count + " je " + sse);           
         }
-        
-    }
 
+    }
 
 
     public class meansPoint

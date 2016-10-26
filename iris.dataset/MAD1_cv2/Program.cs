@@ -15,14 +15,14 @@ namespace MAD1_cv2
         static void Main(string[] args)
         {
             var reader = new StreamReader(File.OpenRead(@"C:\iris.csv"));
-            List<iris> list = new List<iris>();
+            List<Iris> list = new List<Iris>();
             reader.ReadLine();
             while (!reader.EndOfStream)
             {
                 var line = reader.ReadLine();
                 line = line.Replace(",", ".");
                 var values = line.Split(';');
-                iris result_line = new iris(Convert.ToDouble(values[0]), Convert.ToDouble(values[1]), Convert.ToDouble(values[2]), Convert.ToDouble(values[3]), values[4]);
+                Iris result_line = new Iris(Convert.ToDouble(values[0]), Convert.ToDouble(values[1]), Convert.ToDouble(values[2]), Convert.ToDouble(values[3]), values[4]);
                 list.Add(result_line);
             }
 
@@ -31,7 +31,7 @@ namespace MAD1_cv2
             List<double> petallen_list = new List<double>();
             List<double> petalwid_list = new List<double>();
 
-            foreach (iris line in list)
+            foreach (Iris line in list)
             {
                 sepallen_list.Add(line.sepallen);
                 sepalwid_list.Add(line.sepalwid);
@@ -96,14 +96,22 @@ namespace MAD1_cv2
             MakeGraphs(petallen_list, "petal_lenght/graph");
             MakeGraphs(petalwid_list, "petal_width/graph");
 
+            Console.WriteLine();
+            Console.WriteLine();
             Console.ReadKey();
 
-            kmeans k_means = new kmeans();
-            k_means.InitData(petalwid_list, petallen_list);
-            k_means.InitData(sepalwid_list, sepallen_list);
-            k_means.Execute(6, true);
+            dokmeansSSE(sepallen_list, sepalwid_list, petallen_list, petalwid_list);
+
+            Console.WriteLine();
+            Console.ReadKey();
+
+            Kmeans k_means2 = new Kmeans();
+            k_means2.InitData(petalwid_list, petallen_list);
+            k_means2.InitData(sepalwid_list, sepallen_list);
+            k_means2.Execute(2, true);
 
             Console.ReadKey();
+
         }
 
         //Median (na double poli)
@@ -152,7 +160,7 @@ namespace MAD1_cv2
         }
 
         //Euklidovská vzdálenost
-        public static double GetEuclidDist(iris a, iris b)
+        public static double GetEuclidDist(Iris a, Iris b)
         {
             double dist = Math.Sqrt(((a.sepallen - b.sepallen) *  (a.sepallen - b.sepallen) + 
                 (a.sepalwid - b.sepalwid) * (a.sepalwid - b.sepalwid) +
@@ -164,7 +172,7 @@ namespace MAD1_cv2
 
         //https://bioinformatics.oxfordjournals.org/content/suppl/2009/10/24/btp613.DC1/bioinf-2008-1835-File004.pdf
         //Cosinova podobnost
-        public static double GetCosineDist(iris a, iris b)
+        public static double GetCosineDist(Iris a, Iris b)
         {
             double dist1 = (a.sepallen * b.sepallen) + (a.sepalwid * b.sepalwid) + (a.petallen * b.petallen) + (a.petalwid * b.petalwid);
             double dist2 = Math.Sqrt(
@@ -183,7 +191,7 @@ namespace MAD1_cv2
         }
 
         //Generovat euklidovské vzalenosti pro cely dataset
-        public static double[,] GenerateEuclid(List<iris> source)
+        public static double[,] GenerateEuclid(List<Iris> source)
         {
 
             double[,] x = new double[source.Count,source.Count];
@@ -199,7 +207,7 @@ namespace MAD1_cv2
         }
 
         //Generovat cos podobnost pro cely dataset
-        public static double[,] GenerateCosine(List<iris> source)
+        public static double[,] GenerateCosine(List<Iris> source)
         {
 
             double[,] x = new double[source.Count, source.Count];
@@ -348,11 +356,10 @@ namespace MAD1_cv2
 
             List<double> workData = new List<double>();
 
-            foreach (var petal in workData)
+            foreach (var petal in source)
             {
                 workData.Add(petal);
             }
-
 
             workData.Sort();
 
@@ -441,6 +448,40 @@ namespace MAD1_cv2
                 }
             }
             Console.WriteLine(filename + " generated!");
+        }
+
+        //Spustit k-means pro 1-6 clusteru
+        public static void dokmeansSSE(List<double> petalwid_list, List<double> petallen_list, List<double> sepalwid_list, List<double> sepallen_list)
+        {
+            Kmeans k_means = new Kmeans();
+            k_means.InitData(petalwid_list, petallen_list);
+            k_means.InitData(sepalwid_list, sepallen_list);
+            k_means.Execute(1, false);
+
+            Kmeans k_means2 = new Kmeans();
+            k_means2.InitData(petalwid_list, petallen_list);
+            k_means2.InitData(sepalwid_list, sepallen_list);
+            k_means2.Execute(2, false);
+
+            Kmeans k_means3 = new Kmeans();
+            k_means3.InitData(petalwid_list, petallen_list);
+            k_means3.InitData(sepalwid_list, sepallen_list);
+            k_means3.Execute(3, false);
+
+            Kmeans k_means4 = new Kmeans();
+            k_means4.InitData(petalwid_list, petallen_list);
+            k_means4.InitData(sepalwid_list, sepallen_list);
+            k_means4.Execute(4, false);
+
+            Kmeans k_means5 = new Kmeans();
+            k_means5.InitData(petalwid_list, petallen_list);
+            k_means5.InitData(sepalwid_list, sepallen_list);
+            k_means5.Execute(5, false);
+
+            Kmeans k_means6 = new Kmeans();
+            k_means6.InitData(petalwid_list, petallen_list);
+            k_means6.InitData(sepalwid_list, sepallen_list);
+            k_means6.Execute(6, false);
         }
     }
 }

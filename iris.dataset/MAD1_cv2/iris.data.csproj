@@ -72,10 +72,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="kmeans.cs" />
+    <Compile Include="Kmeans.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="iris.cs" />
+    <Compile Include="Iris.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
