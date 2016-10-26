@@ -10,7 +10,11 @@ Iris set
 + Average, Median, Standart Deviation
 + Variance
 + Normal Distribution
-+ Graphing - Histogram (occurences)
++ Occurences
 + CDF, PDF
 + k-means algorithm
 + SSE for k-means
++ Graphing
+++ Ocurences (Histogram)
+++ CDF, PDF
+++ k-means scatter
