@@ -222,7 +222,7 @@ namespace MAD1_cv2
                     }
                 }
                 //SSE pro cluster
-                sse_count[newClusterId] = sse_count[newClusterId] + Math.Pow(distances.Min(), 2);
+                sse_count[newClusterId] = sse_count[newClusterId] + distances.Min();
             }
 
             //SSE celkové

@@ -45,43 +45,47 @@ namespace MAD1_cv2
             System.IO.Directory.CreateDirectory("output/petal_lenght");
             System.IO.Directory.CreateDirectory("output/petal_width");
 
+
+            //CV3
+
             Console.WriteLine("SEPAL LENGTH");           
-            Console.WriteLine("Average: " + GetAverage(sepallen_list));
-            Console.WriteLine("Variance: " + GetVariance(sepallen_list));
-            Console.WriteLine("Deviation: " + GetStdDev(sepallen_list));
-            Console.WriteLine("Median: " + GetMedian(sepallen_list));
-            isNoramalDistribution(sepallen_list, GetAverage(sepallen_list), GetStdDev(petalwid_list));
+            Console.WriteLine("Average: " + Average(sepallen_list));
+            Console.WriteLine("Variance: " + Variance(sepallen_list));
+            Console.WriteLine("Deviation: " + StandartDeviation(sepallen_list));
+            Console.WriteLine("Median: " + Median(sepallen_list));
+            isNoramalDistribution(sepallen_list, Average(sepallen_list), StandartDeviation(petalwid_list));
             Console.WriteLine();
 
             Console.WriteLine("SEPAL WIDTH");
-            Console.WriteLine("Average: " + GetAverage(sepalwid_list));
-            Console.WriteLine("Variance: " + GetVariance(sepalwid_list));
-            Console.WriteLine("Deviation: " + GetStdDev(sepalwid_list));
-            Console.WriteLine("Median: " + GetMedian(sepalwid_list));
-            isNoramalDistribution(sepalwid_list, GetAverage(sepalwid_list), GetStdDev(sepalwid_list));
+            Console.WriteLine("Average: " + Average(sepalwid_list));
+            Console.WriteLine("Variance: " + Variance(sepalwid_list));
+            Console.WriteLine("Deviation: " + StandartDeviation(sepalwid_list));
+            Console.WriteLine("Median: " + Median(sepalwid_list));
+            isNoramalDistribution(sepalwid_list, Average(sepalwid_list), StandartDeviation(sepalwid_list));
             Console.WriteLine();
 
             Console.WriteLine("PETAL LENGTH");
-            Console.WriteLine("Average: " + GetAverage(petallen_list));
-            Console.WriteLine("Variance: " + GetVariance(petallen_list));
-            Console.WriteLine("Deviation: " + GetStdDev(petallen_list));
-            Console.WriteLine("Median: " + GetMedian(petallen_list));
-            isNoramalDistribution(petallen_list, GetAverage(petallen_list), GetStdDev(petallen_list));
+            Console.WriteLine("Average: " + Average(petallen_list));
+            Console.WriteLine("Variance: " + Variance(petallen_list));
+            Console.WriteLine("Deviation: " + StandartDeviation(petallen_list));
+            Console.WriteLine("Median: " + Median(petallen_list));
+            isNoramalDistribution(petallen_list, Average(petallen_list), StandartDeviation(petallen_list));
             Console.WriteLine();
 
             Console.WriteLine("PETAL WIDTH");
-            Console.WriteLine("Average: " + GetAverage(petalwid_list));
-            Console.WriteLine("Variance: " + GetVariance(petalwid_list));
-            Console.WriteLine("Deviation: " + GetStdDev(petalwid_list));
-            Console.WriteLine("Median: " + GetMedian(petalwid_list));
-            isNoramalDistribution(petalwid_list, GetAverage(petalwid_list), GetStdDev(petalwid_list));
+            Console.WriteLine("Average: " + Average(petalwid_list));
+            Console.WriteLine("Variance: " + Variance(petalwid_list));
+            Console.WriteLine("Deviation: " + StandartDeviation(petalwid_list));
+            Console.WriteLine("Median: " + Median(petalwid_list));
+            isNoramalDistribution(petalwid_list, Average(petalwid_list), StandartDeviation(petalwid_list));
 
+            //CV4
 
             Console.WriteLine();
             Console.WriteLine();
             Console.ReadKey();
 
-            double[,] euclid = GenerateEuclid(list);
+            double[,] euclid = GenerateElucid(list);
             CSVgenerator(euclid, "output/euclid_distance.csv");
 
             double[,] cosine = GenerateCosine(list);
@@ -97,17 +101,16 @@ namespace MAD1_cv2
             MakeGraphs(petallen_list, "output/petal_lenght/graph");
             MakeGraphs(petalwid_list, "output/petal_width/graph");
 
+
+            //CV5
             Console.WriteLine();
             Console.WriteLine();
             Console.ReadKey();
 
-            dokmeansSSE(sepallen_list, sepalwid_list, petallen_list, petalwid_list);
-
-            Console.WriteLine();
-            Console.ReadKey();
+            GenerateSSE(sepallen_list, sepalwid_list, petallen_list, petalwid_list);
 
             Kmeans k_means2 = new Kmeans();
-            k_means2.InitData(sepallen_list, sepalwid_list);
+            //k_means2.InitData(sepallen_list, sepalwid_list);
             k_means2.InitData(petallen_list, petalwid_list);
             k_means2.Execute(5, true);
 
@@ -115,8 +118,12 @@ namespace MAD1_cv2
 
         }
 
-        //Median (na double poli)
-        public static double GetMedian(List<double> source)
+        //CV3
+
+        ///<summary>
+        ///Calculate median of values in list.
+        ///</summary>
+        public static double Median(List<double> source)
         {
             double[] sourceNumbers = source.ToArray();
             double[] sortedPNumbers = (double[])sourceNumbers.Clone();
@@ -127,41 +134,49 @@ namespace MAD1_cv2
             return median;
         }
 
-        //Pruměr (na double poli)
-        public static double GetAverage(List<double> source)
+        ///<summary>
+        ///Calculate average of values in a list.
+        ///</summary>
+        public static double Average(List<double> source)
         {
             double[] sourceNumbers = source.ToArray();
             return sourceNumbers.Take(sourceNumbers.Count()).Average();
         }
 
-        //Standartní odchylka (na double poli)
-        public static double GetStdDev(List<double> source)
+        ///<summary>
+        ///Calculate standart deviation of list.
+        ///</summary>
+        public static double StandartDeviation(List<double> source)
         {
             double ret = 0;
             if (source.Count() > 0)
             {    
-                double avg = GetAverage(source);     
+                double avg = Average(source);     
                 double sum = source.Sum(d => Math.Pow(d - avg, 2));    
                 ret = Math.Sqrt((sum) / (source.Count() - 1));
             }
             return ret;
         }
 
-        //Rozptyl (na double poli)
-        public static double GetVariance(List<double> source)
+        ///<summary>
+        ///Calculate variance of a list.
+        ///</summary>
+        public static double Variance(List<double> source)
         {
             double variance = 0;
 
             for (int i = 0; i < source.Count; i++)
             {
-                variance += Math.Pow((source[i] - GetAverage(source)), 2);
+                variance += Math.Pow((source[i] - Average(source)), 2);
             }
 
             return variance / (source.Count);
         }
 
-        //Euklidovská vzdálenost
-        public static double GetEuclidDist(Iris a, Iris b)
+        ///<summary>
+        ///Elucidan Distance between two specific points in the dataset.
+        ///</summary>
+        public static double ElucidanDistance(Iris a, Iris b)
         {
             double dist = Math.Sqrt(((a.sepallen - b.sepallen) *  (a.sepallen - b.sepallen) + 
                 (a.sepalwid - b.sepalwid) * (a.sepalwid - b.sepalwid) +
@@ -171,9 +186,10 @@ namespace MAD1_cv2
             return dist;
         }
 
-        //https://bioinformatics.oxfordjournals.org/content/suppl/2009/10/24/btp613.DC1/bioinf-2008-1835-File004.pdf
-        //Cosinova podobnost
-        public static double GetCosineDist(Iris a, Iris b)
+        ///<summary>
+        ///Cosine similarity between two specific points in the dataset.
+        ///</summary>
+        public static double CosineSimilarity(Iris a, Iris b)
         {
             double dist1 = (a.sepallen * b.sepallen) + (a.sepalwid * b.sepalwid) + (a.petallen * b.petallen) + (a.petalwid * b.petalwid);
             double dist2 = Math.Sqrt(
@@ -191,8 +207,10 @@ namespace MAD1_cv2
             return dist1 / dist2;
         }
 
-        //Generovat euklidovské vzalenosti pro cely dataset
-        public static double[,] GenerateEuclid(List<Iris> source)
+        ///<summary>
+        ///Generate elucidan distance for the whole list of points.
+        ///</summary>
+        public static double[,] GenerateElucid(List<Iris> source)
         {
 
             double[,] x = new double[source.Count,source.Count];
@@ -201,13 +219,15 @@ namespace MAD1_cv2
                 {
                     for (int z = 0; z < source.Count(); z++)
                     {
-                    x[i,z] = GetEuclidDist(source[i], source[z]);
+                    x[i,z] = ElucidanDistance(source[i], source[z]);
                     }
                 }
             return x;
         }
 
-        //Generovat cos podobnost pro cely dataset
+        ///<summary>
+        ///Generate cosine similarity for the whole list of points.
+        ///</summary>
         public static double[,] GenerateCosine(List<Iris> source)
         {
 
@@ -217,7 +237,7 @@ namespace MAD1_cv2
             {
                 for (int z = 0; z < source.Count(); z++)
                 {
-                    x[i, z] = GetCosineDist(source[i], source[z]);
+                    x[i, z] = CosineSimilarity(source[i], source[z]);
                 }
             }
             return x;
@@ -225,7 +245,9 @@ namespace MAD1_cv2
 
         //CV4
 
-        //četnost - relativni+kumulativni jednotlivých hodnot atributů
+        ///<summary>
+        ///Generate CSV of occurences of different values inside a list.
+        ///</summary>
         public static void Occurence(List<double> source , string filename)
         {
             int count = 0;
@@ -254,14 +276,16 @@ namespace MAD1_cv2
                 writer.Write(count+",");
                 writer.Write(count / 1.5 + ",");
                 writer.Write(iris.Count() / 1.5 + ",");
-                writer.Write(PDFfce(StandartDistribution(iris.Key, GetAverage(workData), GetStdDev(workData))));
+                writer.Write(PDF(CDF(iris.Key, Average(workData), StandartDeviation(workData))));
                 writer.WriteLine();
             }
             }
             Console.WriteLine(filename + " generated!");
         }
 
-        //Je normální distribucí ?
+        /// <summary>
+        /// Check if the source list is distributed normally.
+        /// </summary>
         public static void isNoramalDistribution(List<double> source, double mean, double deviation)
         {
             int cOfIsTrue = 0;
@@ -330,16 +354,20 @@ namespace MAD1_cv2
             }
         }
 
-        //Výpočet CDF
-        public static double StandartDistribution(double score, double average, double standardDeviation)
+        /// <summary>
+        /// Calculate cumulative distribution function (CDF)
+        /// </summary>
+        public static double CDF(double score, double average, double standardDeviation)
         {
             if (standardDeviation == 0) return 0;
 
             return (score - average) / standardDeviation;
         }
 
-        //Výpočet PDF
-        public static double PDFfce(double StandartDistribution)
+        /// <summary>
+        /// Calculate probability density function (PDF)
+        /// </summary>
+        public static double PDF(double StandartDistribution)
         {
             var exponent = -1 * (0.5 * Math.Pow(StandartDistribution, 2));
             var numerator = Math.Pow(Math.E, exponent);
@@ -347,7 +375,9 @@ namespace MAD1_cv2
             return numerator / denominator;
         }
 
-        //Generovat grafy pro atribut
+        /// <summary>
+        /// "helper" funtion to generate CDF,PDF and histogram for a list.
+        /// </summary>
         public static void MakeGraphs(List<double> source, string filename)
         {
             int count = 0;
@@ -381,7 +411,7 @@ namespace MAD1_cv2
                 z++;
 
                 overlayData.Points.Add(new DataPoint(z, count / 1.5));
-                PDF.Points.Add(new DataPoint(z, PDFfce(StandartDistribution(iris.Key, GetAverage(workData), GetStdDev(workData)))));
+                PDF.Points.Add(new DataPoint(z, Program.PDF(CDF(iris.Key, Average(workData), StandartDeviation(workData)))));
             }
 
             ColumnSeries ColSer = new ColumnSeries();
@@ -431,7 +461,9 @@ namespace MAD1_cv2
 
         }
 
-        //zapis do CSV
+        /// <summary>
+        /// CSV generator "helper" funtion.
+        /// </summary>
         public static void CSVgenerator(double[,] source, string filename)
         {
             using (StreamWriter writer =
@@ -451,36 +483,41 @@ namespace MAD1_cv2
             Console.WriteLine(filename + " generated!");
         }
 
-        //Spustit k-means pro 1-6 clusteru
-        public static void dokmeansSSE(List<double> petalwid_list, List<double> petallen_list, List<double> sepalwid_list, List<double> sepallen_list)
+        //CV5
+        //Kmeans.cs
+
+        /// <summary>
+        /// Run k-means algorithm for multiple cluster values and generate SSE value.
+        /// </summary>
+        public static void GenerateSSE(List<double> petalwid_list, List<double> petallen_list, List<double> sepalwid_list, List<double> sepallen_list)
         {
             Kmeans k_means = new Kmeans();
-            k_means.InitData(petalwid_list, petallen_list);
+            //k_means.InitData(petalwid_list, petallen_list);
             k_means.InitData(sepalwid_list, sepallen_list);
             k_means.Execute(1, false);
 
             Kmeans k_means2 = new Kmeans();
-            k_means2.InitData(petalwid_list, petallen_list);
+            //k_means2.InitData(petalwid_list, petallen_list);
             k_means2.InitData(sepalwid_list, sepallen_list);
             k_means2.Execute(2, false);
 
             Kmeans k_means3 = new Kmeans();
-            k_means3.InitData(petalwid_list, petallen_list);
+            //k_means3.InitData(petalwid_list, petallen_list);
             k_means3.InitData(sepalwid_list, sepallen_list);
             k_means3.Execute(3, false);
 
             Kmeans k_means4 = new Kmeans();
-            k_means4.InitData(petalwid_list, petallen_list);
+            //k_means4.InitData(petalwid_list, petallen_list);
             k_means4.InitData(sepalwid_list, sepallen_list);
             k_means4.Execute(4, false);
 
             Kmeans k_means5 = new Kmeans();
-            k_means5.InitData(petalwid_list, petallen_list);
+            //k_means5.InitData(petalwid_list, petallen_list);
             k_means5.InitData(sepalwid_list, sepallen_list);
             k_means5.Execute(5, false);
 
             Kmeans k_means6 = new Kmeans();
-            k_means6.InitData(petalwid_list, petallen_list);
+            //k_means6.InitData(petalwid_list, petallen_list);
             k_means6.InitData(sepalwid_list, sepallen_list);
             k_means6.Execute(6, false);
         }
