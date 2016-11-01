@@ -1,6 +1,6 @@
 # MAD1
-My "data mining experiments"
-MAD1 course exercises  led by RNDr. Eliška Ochodková, Ph.D. http://www.cs.vsb.cz/ochodkova/
+My "data mining experiments" in
+MAD1 course exercises led by RNDr. Eliška Ochodková, Ph.D. http://www.cs.vsb.cz/ochodkova/
 
 
 Playground Set
