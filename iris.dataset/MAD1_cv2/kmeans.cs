@@ -1,22 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MAD.Data;
+using MAD.Helpers;
 using OxyPlot;
 using OxyPlot.Series;
-using OxyPlot.Axes;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace MAD
 {
     public class KMeans
     {
-        List<MeansPoint> _rawDataToCluster = new List<MeansPoint>();
-        List<MeansPoint> _normalizedDataToCluster = new List<MeansPoint>();
-        List<MeansPoint> _clusters = new List<MeansPoint>();
+        private ElucidanDistance ElucDist = new ElucidanDistance();
+
+        private List<MeansPoint> _rawDataToCluster = new List<MeansPoint>();
+        private List<MeansPoint> _normalizedDataToCluster = new List<MeansPoint>();
+        private List<MeansPoint> _clusters = new List<MeansPoint>();
         private int _numberOfClusters = 0;
-        PlotModel graf = new PlotModel();
+        private PlotModel graf = new PlotModel();
+
         private double sse = new double();
         private bool print = new bool();
 
@@ -30,7 +32,6 @@ namespace MAD
                 scatterSeries.Points.Add(new ScatterPoint(x[i], y[i]));
             }
 
-          
             graf.Series.Add(scatterSeries);
         }
 
@@ -45,7 +46,7 @@ namespace MAD
 
             graf.Series.Add(scatterSeries2);
 
-            using (var stream = File.Create("output/kmeans-" + _clusters.Count +".pdf"))
+            using (var stream = File.Create("output/kmeans-" + _clusters.Count + ".pdf"))
             {
                 var pdfExporter = new PdfExporter { Width = 1000, Height = 400 };
                 pdfExporter.Export(graf, stream);
@@ -89,11 +90,11 @@ namespace MAD
             foreach (MeansPoint dataPoint in _rawDataToCluster)
             {
                 sumWidth += Math.Pow(dataPoint.Width - widthMean, 2);
-                sumLength += Math.Pow(dataPoint.Length- lengthMean, 2);
+                sumLength += Math.Pow(dataPoint.Length - lengthMean, 2);
             }
 
             double widthSD = sumWidth / _rawDataToCluster.Count;
-            double lengthSD = sumLength / _rawDataToCluster.Count;        
+            double lengthSD = sumLength / _rawDataToCluster.Count;
             foreach (MeansPoint dataPoint in _rawDataToCluster)
             {
                 _normalizedDataToCluster.Add(new MeansPoint()
@@ -179,18 +180,11 @@ namespace MAD
             return true;
         }
 
-        //Výpočet euclidovy vzdálenosti
-        private double ElucidanDistance(MeansPoint dataPoint, MeansPoint mean)
-        {
-            double _diffs = 0.0;
-            _diffs = Math.Pow(dataPoint.Width - mean.Width, 2);
-            _diffs += Math.Pow(dataPoint.Length - mean.Length, 2);
-            return Math.Sqrt(_diffs);
-        }
-
         //Přesunout MeansPointy do správných clusterů
         private bool UpdateClusterMembership()
         {
+            MinIndex min = new MinIndex();
+
             bool changed = false;
 
             double[] distances = new double[_numberOfClusters];
@@ -201,13 +195,12 @@ namespace MAD
 
             for (int i = 0; i < _normalizedDataToCluster.Count; ++i)
             {
-
                 for (int k = 0; k < _numberOfClusters; ++k)
                 {
-                    distances[k] = ElucidanDistance(_normalizedDataToCluster[i], _clusters[k]);
+                    distances[k] = ElucDist.Get(_normalizedDataToCluster[i], _clusters[k]);
                 }
 
-                int newClusterId = MinIndex(distances);
+                int newClusterId = min.Get(distances);
 
                 if (newClusterId != _normalizedDataToCluster[i].Cluster)
                 {
@@ -216,8 +209,8 @@ namespace MAD
 
                     if (print)
                     {
-                    Console.WriteLine("Width: " + _rawDataToCluster[i].Width + ", Lenght: " +
-                    _rawDataToCluster[i].Length + " ----> Cluster " + newClusterId);
+                        Console.WriteLine("Width: " + _rawDataToCluster[i].Width + ", Lenght: " +
+                        _rawDataToCluster[i].Length + " ----> Cluster " + newClusterId);
                     }
                 }
                 //SSE pro cluster
@@ -226,7 +219,7 @@ namespace MAD
 
             //SSE celkové
             for (int o = 0; o < sse_count.Length; o++)
-            {result = result + sse_count[o];}
+            { result = result + sse_count[o]; }
             sse = result;
 
             if (changed == false)
@@ -235,36 +228,18 @@ namespace MAD
             return true;
         }
 
-        //Helper.: Nejmenší hodnota v poli
-        private int MinIndex(double[] distances)
-        {
-            int _indexOfMin = 0;
-            double _smallDist = distances[0];
-            for (int k = 0; k < distances.Length; ++k)
-            {
-                if (distances[k] < _smallDist)
-                {
-                    _smallDist = distances[k];
-                    _indexOfMin = k;
-                }
-            }
-            return _indexOfMin;
-        }
-
         public void SSE()
         {
-
             double result = 0;
             double result_cluster = 0;
 
             for (int i = 0; i < _clusters.Count; i++)
             {
-
                 for (int z = 0; z < _rawDataToCluster.Count; z++)
                 {
                     if (_rawDataToCluster[z].Cluster == _clusters[i].Cluster)
                     {
-                        result_cluster = result + ElucidanDistance(_rawDataToCluster[z], _clusters[i]);
+                        result_cluster = result + ElucDist.Get(_rawDataToCluster[z], _clusters[i]);
                     }
                 }
 
@@ -274,7 +249,6 @@ namespace MAD
             Console.WriteLine("SSE: " + result.ToString());
         }
 
-        //Spustit k-means
         public void Execute(int NumberOfClusters, bool print)
         {
             this.print = print;
@@ -291,7 +265,7 @@ namespace MAD
 
             NormalizeData();
             InitializeCentroids();
-            
+
             int maxIteration = _normalizedDataToCluster.Count * 1000000;
             int _threshold = 0;
 
@@ -302,44 +276,76 @@ namespace MAD
                 _changed = UpdateClusterMembership();
             }
 
-            
-                var group = _rawDataToCluster.GroupBy(s => s.Cluster).OrderBy(s => s.Key);
+            var group = _rawDataToCluster.GroupBy(s => s.Cluster).OrderBy(s => s.Key);
 
-                foreach (var g in group)
-                {
-
+            foreach (var g in group)
+            {
                 if (print)
                 {
                     Console.WriteLine("Cluster " + g.Key + ":");
                 }
 
                 List<double> Wid = new List<double>();
-                List<double> Len = new List<double>();              
-                    foreach (var value in g)
-                    {
+                List<double> Len = new List<double>();
 
+                foreach (var value in g)
+                {
                     if (print)
-                     Console.WriteLine(value.ToString());
-                    
-                        Wid.Add(value.Width);
-                        Len.Add(value.Length);
-                    
-                    }
+                        Console.WriteLine(value.ToString());
 
-                    byte[] color = GetRandomColor();
+                    Wid.Add(value.Width);
+                    Len.Add(value.Length);
+                }
 
-                    AddToGraph(Wid, Len, g.Key, color[0], color[1], color[2]);
+                RandomColor random = new RandomColor();
+                byte[] color = random.Get();
+
+                AddToGraph(Wid, Len, g.Key, color[0], color[1], color[2]);
 
                 if (print)
                 {
                     Console.WriteLine("------------------------------");
                 }
             }
-            
+
             GenerateGraph();
-            Console.WriteLine("SSE pro k = " + _clusters.Count + " je " + sse);           
+            Console.WriteLine("SSE pro k = " + _clusters.Count + " je " + sse);
         }
 
-    }
+        /// <summary>
+        /// Run k-means algorithm for multiple cluster values and generate SSE value.
+        /// </summary>
+        public void GenerateSSE(List<double> petalwid_list, List<double> petallen_list, List<double> sepalwid_list, List<double> sepallen_list)
+        {
+            KMeans k_means = new KMeans();
+            //k_means.InitData(petalwid_list, petallen_list);
+            k_means.InitData(sepalwid_list, sepallen_list);
+            k_means.Execute(1, false);
 
+            KMeans k_means2 = new KMeans();
+            //k_means2.InitData(petalwid_list, petallen_list);
+            k_means2.InitData(sepalwid_list, sepallen_list);
+            k_means2.Execute(2, false);
+
+            KMeans k_means3 = new KMeans();
+            //k_means3.InitData(petalwid_list, petallen_list);
+            k_means3.InitData(sepalwid_list, sepallen_list);
+            k_means3.Execute(3, false);
+
+            KMeans k_means4 = new KMeans();
+            //k_means4.InitData(petalwid_list, petallen_list);
+            k_means4.InitData(sepalwid_list, sepallen_list);
+            k_means4.Execute(4, false);
+
+            KMeans k_means5 = new KMeans();
+            //k_means5.InitData(petalwid_list, petallen_list);
+            k_means5.InitData(sepalwid_list, sepallen_list);
+            k_means5.Execute(5, false);
+
+            KMeans k_means6 = new KMeans();
+            //k_means6.InitData(petalwid_list, petallen_list);
+            k_means6.InitData(sepalwid_list, sepallen_list);
+            k_means6.Execute(6, false);
+        }
+    }
 }

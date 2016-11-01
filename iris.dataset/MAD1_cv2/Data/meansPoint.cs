@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MAD
+﻿namespace MAD.Data
 {
     public class MeansPoint
     {
         public double Width { get; set; }
         public double Length { get; set; }
         public int Cluster { get; set; }
+
         public MeansPoint(double width, double lenght)
         {
             Width = width;
@@ -20,7 +15,6 @@ namespace MAD
 
         public MeansPoint()
         {
-
         }
 
         public override string ToString()

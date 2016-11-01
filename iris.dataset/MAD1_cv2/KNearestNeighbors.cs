@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MAD.Data;
 using MAD.Enum;
 using MAD.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MAD
 {
@@ -23,19 +22,18 @@ namespace MAD
         {
             foreach (Iris line in input)
             {
-                double[] lineDoubles = new double[]{line.sepallen,line.sepalwid,line.petallen,line.petalwid};
+                double[] lineDoubles = new double[] { line.sepallen, line.sepalwid, line.petallen, line.petalwid };
 
-                if (dataType == DataType.TRAININGDATA)
+                if (dataType == DataType.TRAINING)
                 {
                     this.trainingSetValues.Add(lineDoubles);
                     this.trainingSetClasses.Add(line.species);
                 }
-                else if (dataType == DataType.TESTDATA)
+                else if (dataType == DataType.TEST)
                 {
                     this.testSetValues.Add(lineDoubles);
                     this.testSetClasses.Add(line.species);
                 }
-
             }
         }
 
@@ -57,7 +55,7 @@ namespace MAD
             {
                 Parallel.For(0, trainingSetValues.Count, index =>
                     {
-                        var dist = EuclideanDistance(this.testSetValues[test], this.trainingSetValues[index]);
+                        var dist = ElucDist.Get(this.testSetValues[test], this.trainingSetValues[index]);
                         distances[index][0] = dist;
                         distances[index][1] = index;
                     }
@@ -80,18 +78,6 @@ namespace MAD
             }
 
             Console.WriteLine();
-        }
-
-        private static double EuclideanDistance(double[] sampleOne, double[] sampleTwo)
-        {
-            double d = 0.0;
-
-            for (int i = 0; i < sampleOne.Length; i++)
-            {
-                double temp = sampleOne[i] - sampleTwo[i];
-                d += temp * temp;
-            }
-            return Math.Sqrt(d);
         }
     }
 }

@@ -7,8 +7,8 @@
     <ProjectGuid>{BFE0F189-C306-4CB3-BF79-F1F6F3E75C63}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MAD1_cv2</RootNamespace>
-    <AssemblyName>MAD1_cv2</AssemblyName>
+    <RootNamespace>MAD</RootNamespace>
+    <AssemblyName>MAD</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -73,11 +73,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enum\DataType.cs" />
+    <Compile Include="Graph\MakeGraph.cs" />
+    <Compile Include="Print.cs" />
+    <Compile Include="Helpers\CSVGenerator.cs" />
     <Compile Include="Helpers\ElucidanDistance.cs" />
+    <Compile Include="Helpers\MinIndex.cs" />
     <Compile Include="Helpers\RandomColor.cs" />
     <Compile Include="KMeans.cs" />
     <Compile Include="KNearestNeighbors.cs" />
     <Compile Include="Data\MeansPoint.cs" />
+    <Compile Include="Operations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Iris.cs" />
@@ -86,9 +91,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Graph\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

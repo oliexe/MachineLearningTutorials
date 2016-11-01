@@ -25,12 +25,7 @@ C:\Users\olire\Documents\GitHub\MAD1\cv4\MAD1_cv2\bin\Debug\de\PdfSharp.Charting
 C:\Users\olire\Documents\GitHub\MAD1\cv4\MAD1_cv2\obj\Debug\iris.data.csprojResolveAssemblyReference.cache
 C:\Users\olire\Documents\GitHub\MAD1\cv4\MAD1_cv2\obj\Debug\MAD1_cv2.exe
 C:\Users\olire\Documents\GitHub\MAD1\cv4\MAD1_cv2\obj\Debug\MAD1_cv2.pdb
-C:\Users\olire\Documents\GitHub\MAD1\iris.dataset\MAD1_cv2\bin\Debug\MAD1_cv2.exe.config
-C:\Users\olire\Documents\GitHub\MAD1\iris.dataset\MAD1_cv2\obj\Debug\MAD1_cv2.exe
-C:\Users\olire\Documents\GitHub\MAD1\iris.dataset\MAD1_cv2\obj\Debug\MAD1_cv2.pdb
 C:\Users\olire\Documents\GitHub\MAD1\iris.dataset\MAD1_cv2\obj\Debug\iris.data.csprojResolveAssemblyReference.cache
-C:\Users\olire\Documents\GitHub\MAD1\iris.dataset\MAD1_cv2\bin\Debug\MAD1_cv2.exe
-C:\Users\olire\Documents\GitHub\MAD1\iris.dataset\MAD1_cv2\bin\Debug\MAD1_cv2.pdb
 C:\Users\olire\Documents\GitHub\MAD1\iris.dataset\MAD1_cv2\bin\Debug\MigraDoc.DocumentObjectModel.dll
 C:\Users\olire\Documents\GitHub\MAD1\iris.dataset\MAD1_cv2\bin\Debug\MigraDoc.Rendering.dll
 C:\Users\olire\Documents\GitHub\MAD1\iris.dataset\MAD1_cv2\bin\Debug\MigraDoc.RtfRendering.dll
@@ -52,3 +47,8 @@ C:\Users\olire\Documents\GitHub\MAD1\iris.dataset\MAD1_cv2\bin\Debug\de\MigraDoc
 C:\Users\olire\Documents\GitHub\MAD1\iris.dataset\MAD1_cv2\bin\Debug\de\MigraDoc.RtfRendering.resources.dll
 C:\Users\olire\Documents\GitHub\MAD1\iris.dataset\MAD1_cv2\bin\Debug\de\PdfSharp.resources.dll
 C:\Users\olire\Documents\GitHub\MAD1\iris.dataset\MAD1_cv2\bin\Debug\de\PdfSharp.Charting.resources.dll
+C:\Users\olire\Documents\GitHub\MAD1\iris.dataset\MAD1_cv2\bin\Debug\MAD.exe.config
+C:\Users\olire\Documents\GitHub\MAD1\iris.dataset\MAD1_cv2\bin\Debug\MAD.exe
+C:\Users\olire\Documents\GitHub\MAD1\iris.dataset\MAD1_cv2\bin\Debug\MAD.pdb
+C:\Users\olire\Documents\GitHub\MAD1\iris.dataset\MAD1_cv2\obj\Debug\MAD.exe
+C:\Users\olire\Documents\GitHub\MAD1\iris.dataset\MAD1_cv2\obj\Debug\MAD.pdb
