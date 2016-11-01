@@ -7,44 +7,26 @@ using System.Threading.Tasks;
 using OxyPlot;
 using OxyPlot.Series;
 using OxyPlot.Axes;
+using MAD.Enum;
 
-namespace MAD1_cv2
+namespace MAD
 {
     class Program
     {
+        static List<Iris> list = new List<Iris>();
+
+        static List<double> sepallen_list = new List<double>();
+        static List<double> sepalwid_list = new List<double>();
+
+        static List<double> petallen_list = new List<double>();
+        static List<double> petalwid_list = new List<double>();
+
+        static List<string> petal_species = new List<string>();
+
         static void Main(string[] args)
         {
-            var reader = new StreamReader(File.OpenRead(@"C:\iris.csv"));
-            List<Iris> list = new List<Iris>();
-            reader.ReadLine();
-            while (!reader.EndOfStream)
-            {
-                var line = reader.ReadLine();
-                line = line.Replace(",", ".");
-                var values = line.Split(';');
-                Iris result_line = new Iris(Convert.ToDouble(values[0]), Convert.ToDouble(values[1]), Convert.ToDouble(values[2]), Convert.ToDouble(values[3]), values[4]);
-                list.Add(result_line);
-            }
-
-            List<double> sepallen_list = new List<double>();
-            List<double> sepalwid_list = new List<double>();
-            List<double> petallen_list = new List<double>();
-            List<double> petalwid_list = new List<double>();
-
-            foreach (Iris line in list)
-            {
-                sepallen_list.Add(line.sepallen);
-                sepalwid_list.Add(line.sepalwid);
-                petallen_list.Add(line.petallen);
-                petalwid_list.Add(line.petalwid);
-            }
-
-            System.IO.Directory.CreateDirectory("output");
-            System.IO.Directory.CreateDirectory("output/sepal_lenght");
-            System.IO.Directory.CreateDirectory("output/sepal_width");
-            System.IO.Directory.CreateDirectory("output/petal_lenght");
-            System.IO.Directory.CreateDirectory("output/petal_width");
-
+            List<Iris> training_dataset = InitData(@"C:\iris.csv");
+            InitStruct(training_dataset);
 
             //CV3
 
@@ -109,19 +91,64 @@ namespace MAD1_cv2
 
             GenerateSSE(sepallen_list, sepalwid_list, petallen_list, petalwid_list);
 
-            Kmeans k_means2 = new Kmeans();
+            KMeans k_means2 = new KMeans();
             //k_means2.InitData(sepallen_list, sepalwid_list);
             k_means2.InitData(petallen_list, petalwid_list);
             k_means2.Execute(5, true);
 
             Console.ReadKey();
 
+            List<Iris> test_dataset = InitData(@"C:\iris_test.csv");
+            KNearestNeighbors knem = new KNearestNeighbors();
+            knem.InitData(training_dataset, DataType.TRAININGDATA);
+            knem.InitData(test_dataset, DataType.TESTDATA);
+            knem.Classify(1);
+
+        }
+
+        public static List<Iris> InitData(string filename)
+        {
+            var reader = new StreamReader(File.OpenRead(filename));
+            List<Iris> output = new List<Iris>();
+            reader.ReadLine();
+            while (!reader.EndOfStream)
+            {
+                var line = reader.ReadLine();
+                line = line.Replace(",", ".");
+                var values = line.Split(';');
+                Iris result_line = new Iris(Convert.ToDouble(values[0]), Convert.ToDouble(values[1]), Convert.ToDouble(values[2]), Convert.ToDouble(values[3]), values[4]);
+                output.Add(result_line);
+            }
+
+            return output;
+            
+        }
+
+        public static void InitStruct(List<Iris> input)
+        {
+            list = input;
+
+            foreach (Iris line in list)
+            {
+                sepallen_list.Add(line.sepallen);
+                sepalwid_list.Add(line.sepalwid);
+                petallen_list.Add(line.petallen);
+                petalwid_list.Add(line.petalwid);
+                petal_species.Add(line.species);
+            }
+
+
+            System.IO.Directory.CreateDirectory("output");
+            System.IO.Directory.CreateDirectory("output/sepal_lenght");
+            System.IO.Directory.CreateDirectory("output/sepal_width");
+            System.IO.Directory.CreateDirectory("output/petal_lenght");
+            System.IO.Directory.CreateDirectory("output/petal_width");
         }
 
         //CV3
 
         ///<summary>
-        ///Calculate median of values in list.
+        ///Calculate median of values in a list.
         ///</summary>
         public static double Median(List<double> source)
         {
@@ -491,32 +518,32 @@ namespace MAD1_cv2
         /// </summary>
         public static void GenerateSSE(List<double> petalwid_list, List<double> petallen_list, List<double> sepalwid_list, List<double> sepallen_list)
         {
-            Kmeans k_means = new Kmeans();
+            KMeans k_means = new KMeans();
             //k_means.InitData(petalwid_list, petallen_list);
             k_means.InitData(sepalwid_list, sepallen_list);
             k_means.Execute(1, false);
 
-            Kmeans k_means2 = new Kmeans();
+            KMeans k_means2 = new KMeans();
             //k_means2.InitData(petalwid_list, petallen_list);
             k_means2.InitData(sepalwid_list, sepallen_list);
             k_means2.Execute(2, false);
 
-            Kmeans k_means3 = new Kmeans();
+            KMeans k_means3 = new KMeans();
             //k_means3.InitData(petalwid_list, petallen_list);
             k_means3.InitData(sepalwid_list, sepallen_list);
             k_means3.Execute(3, false);
 
-            Kmeans k_means4 = new Kmeans();
+            KMeans k_means4 = new KMeans();
             //k_means4.InitData(petalwid_list, petallen_list);
             k_means4.InitData(sepalwid_list, sepallen_list);
             k_means4.Execute(4, false);
 
-            Kmeans k_means5 = new Kmeans();
+            KMeans k_means5 = new KMeans();
             //k_means5.InitData(petalwid_list, petallen_list);
             k_means5.InitData(sepalwid_list, sepallen_list);
             k_means5.Execute(5, false);
 
-            Kmeans k_means6 = new Kmeans();
+            KMeans k_means6 = new KMeans();
             //k_means6.InitData(petalwid_list, petallen_list);
             k_means6.InitData(sepalwid_list, sepallen_list);
             k_means6.Execute(6, false);

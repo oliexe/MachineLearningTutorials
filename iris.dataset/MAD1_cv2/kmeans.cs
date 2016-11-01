@@ -8,13 +8,13 @@ using OxyPlot.Series;
 using OxyPlot.Axes;
 using System.IO;
 
-namespace MAD1_cv2
+namespace MAD
 {
-    public class Kmeans
+    public class KMeans
     {
-        List<meansPoint> _rawDataToCluster = new List<meansPoint>();
-        List<meansPoint> _normalizedDataToCluster = new List<meansPoint>();
-        List<meansPoint> _clusters = new List<meansPoint>();
+        List<MeansPoint> _rawDataToCluster = new List<MeansPoint>();
+        List<MeansPoint> _normalizedDataToCluster = new List<MeansPoint>();
+        List<MeansPoint> _clusters = new List<MeansPoint>();
         private int _numberOfClusters = 0;
         PlotModel graf = new PlotModel();
         private double sse = new double();
@@ -33,7 +33,6 @@ namespace MAD1_cv2
           
             graf.Series.Add(scatterSeries);
         }
-
 
         public void GenerateGraph()
         {
@@ -66,7 +65,7 @@ namespace MAD1_cv2
         {
             for (int i = 0; i < Lenght.Count(); i++)
             {
-                _rawDataToCluster.Add(new meansPoint(Width[i], Lenght[i]));
+                _rawDataToCluster.Add(new MeansPoint(Width[i], Lenght[i]));
             }
         }
 
@@ -76,7 +75,7 @@ namespace MAD1_cv2
             double widthSum = 0.0;
             double lengthSum = 0.0;
 
-            foreach (meansPoint dataPoint in _rawDataToCluster)
+            foreach (MeansPoint dataPoint in _rawDataToCluster)
             {
                 widthSum += dataPoint.Width;
                 lengthSum += dataPoint.Length;
@@ -87,7 +86,7 @@ namespace MAD1_cv2
 
             double sumWidth = 0.0;
             double sumLength = 0.0;
-            foreach (meansPoint dataPoint in _rawDataToCluster)
+            foreach (MeansPoint dataPoint in _rawDataToCluster)
             {
                 sumWidth += Math.Pow(dataPoint.Width - widthMean, 2);
                 sumLength += Math.Pow(dataPoint.Length- lengthMean, 2);
@@ -95,9 +94,9 @@ namespace MAD1_cv2
 
             double widthSD = sumWidth / _rawDataToCluster.Count;
             double lengthSD = sumLength / _rawDataToCluster.Count;        
-            foreach (meansPoint dataPoint in _rawDataToCluster)
+            foreach (MeansPoint dataPoint in _rawDataToCluster)
             {
-                _normalizedDataToCluster.Add(new meansPoint()
+                _normalizedDataToCluster.Add(new MeansPoint()
                 {
                     Width = (dataPoint.Width - widthMean) / widthSD,
                     Length = (dataPoint.Length - lengthMean) / lengthSD
@@ -116,7 +115,7 @@ namespace MAD1_cv2
         }
 
         //Helper.: Test zda má cluster alespoň jeden přiřazený bod
-        private bool IsClusterEmpty(List<meansPoint> data)
+        private bool IsClusterEmpty(List<MeansPoint> data)
         {
             var emptyCluster =
             data.GroupBy(s => s.Cluster).OrderBy(s => s.Key).Select(g => new { Cluster = g.Key, Count = g.Count() });
@@ -181,7 +180,7 @@ namespace MAD1_cv2
         }
 
         //Výpočet euclidovy vzdálenosti
-        private double ElucidanDistance(meansPoint dataPoint, meansPoint mean)
+        private double ElucidanDistance(MeansPoint dataPoint, MeansPoint mean)
         {
             double _diffs = 0.0;
             _diffs = Math.Pow(dataPoint.Width - mean.Width, 2);
@@ -252,7 +251,6 @@ namespace MAD1_cv2
             return _indexOfMin;
         }
 
-
         public void SSE()
         {
 
@@ -285,7 +283,7 @@ namespace MAD1_cv2
 
             for (int i = 0; i < _numberOfClusters; i++)
             {
-                _clusters.Add(new meansPoint() { Cluster = i });
+                _clusters.Add(new MeansPoint() { Cluster = i });
             }
 
             bool _changed = true;
@@ -342,30 +340,6 @@ namespace MAD1_cv2
             Console.WriteLine("SSE pro k = " + _clusters.Count + " je " + sse);           
         }
 
-    }
-
-
-    public class meansPoint
-    {
-        public double Width { get; set; }
-        public double Length { get; set; }
-        public int Cluster { get; set; }
-        public meansPoint(double width, double lenght)
-        {
-            Width = width;
-            Length = lenght;
-            Cluster = 0;
-        }
-
-        public meansPoint()
-        {
-
-        }
-
-        public override string ToString()
-        {
-            return string.Format("{{{0},{1}}}", Width.ToString("f" + 1), Length.ToString("f" + 1));
-        }
     }
 
 }

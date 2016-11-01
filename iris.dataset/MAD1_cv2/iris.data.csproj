@@ -72,14 +72,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Kmeans.cs" />
+    <Compile Include="Enum\DataType.cs" />
+    <Compile Include="Helpers\ElucidanDistance.cs" />
+    <Compile Include="Helpers\RandomColor.cs" />
+    <Compile Include="KMeans.cs" />
+    <Compile Include="KNearestNeighbors.cs" />
+    <Compile Include="Data\MeansPoint.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Iris.cs" />
+    <Compile Include="Data\Iris.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Graph\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

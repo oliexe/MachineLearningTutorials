@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MAD1_cv2
+namespace MAD
 {
-    class Iris
+    public class Iris
     {
         public double sepallen;
         public double sepalwid;
