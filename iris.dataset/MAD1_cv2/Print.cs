@@ -157,12 +157,14 @@ namespace MAD
                 Console.WriteLine();
             }
 
+
             Console.Write("K-means? (y/n)");
             response = Console.ReadLine();
             if (response.Equals("y"))
             {
                 Console.Write("How many clusters ?");
                 int res_clusters = Int32.Parse(Console.ReadLine());
+
                 KMeans k_means2 = new KMeans();
                 k_means2.InitData(petallen_list, petalwid_list);
                 k_means2.Execute(res_clusters, true);
