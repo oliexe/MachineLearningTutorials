@@ -17,3 +17,8 @@ Iris Set
 + SSE for k-means
 + k-nearest neighbors algorithm
 + Graphing of ocurences (Histogram), CDF, PDF, k-means scatter
+
+Karate Set
++ Min, Max, Average degree of nodes
++ Frequency, Relative frequency of degrees
++ Histograms
