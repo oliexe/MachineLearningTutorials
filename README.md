@@ -40,7 +40,7 @@ https://networkdata.ics.uci.edu/data.php?id=105
 
 ***
 
-**Homework**
+**Homework - Video Game Sales**
 
 https://www.kaggle.com/gregorut/videogamesales
 
