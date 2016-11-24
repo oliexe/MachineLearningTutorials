@@ -1,4 +1,4 @@
-# MAD1
+# Machine learning & data mining
 MAD1 course exercises led by RNDr. Eliška Ochodková, Ph.D. http://www.cs.vsb.cz/ochodkova/
 
 ***
