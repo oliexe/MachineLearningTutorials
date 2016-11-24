@@ -1,6 +1,8 @@
 # MAD1
 MAD1 course exercises led by RNDr. Eliška Ochodková, Ph.D. http://www.cs.vsb.cz/ochodkova/
 
+***
+
 **Playground Set**
 
 http://gerardnico.com/wiki/data_mining/weather
@@ -39,5 +41,7 @@ https://networkdata.ics.uci.edu/data.php?id=105
 ***
 
 **Homework**
-+ On Dataset by GregorySmith on Kaggle : https://www.kaggle.com/gregorut/videogamesales
+
+https://www.kaggle.com/gregorut/videogamesales
+
 + TODO
