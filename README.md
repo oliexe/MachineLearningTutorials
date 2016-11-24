@@ -7,6 +7,7 @@ http://gerardnico.com/wiki/data_mining/weather
 
 + Classification Tree (Decision tree learning)
 
+***
 
 **Iris flower data set**
 
@@ -23,6 +24,8 @@ http://archive.ics.uci.edu/ml/datasets/Iris
 + k-nearest neighbors algorithm
 + Graphing of ocurences (Histogram), CDF, PDF, k-means scatter
 
+***
+
 **Zachary's Karate Club (Network)**
 
 https://networkdata.ics.uci.edu/data.php?id=105
@@ -33,7 +36,7 @@ https://networkdata.ics.uci.edu/data.php?id=105
 + Floyd–Warshall algorithm , Dijkstra algorithm (TODO)
 + Closeness centrality (TODO)
 
-
+***
 
 **Homework**
 + On Dataset by GregorySmith on Kaggle : https://www.kaggle.com/gregorut/videogamesales
