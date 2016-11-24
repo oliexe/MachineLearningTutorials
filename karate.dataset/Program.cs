@@ -22,7 +22,6 @@ namespace karate.dataset
             Console.ReadKey();
         }
 
-
         public static void GetDegrees(List<Node> input)
         {
             int[] degrees = new int[input.Count()];
@@ -38,24 +37,40 @@ namespace karate.dataset
             Array.Sort(degrees);
 
             var groups = degrees.GroupBy(item => item);
-            
+
+            foreach (var group in groups)
+            {
+                count = count + group.Count();
+            }
+
+            Console.WriteLine();
+           Console.WriteLine("--------------------------------------------------------------");
+            Console.WriteLine();
             foreach (var group in groups)
             {
                 Console.Write(string.Format("STUPEN: {1}  VYSKYT:{0}", group.Count(), group.Key));
-                count = count + group.Count();
-                Console.WriteLine("RELATIVNI CETNOST:" + count / input.Count);
+                double vysledek = (double)group.Count() / (double)count;
+                Console.WriteLine("  RELATIVNI CETNOST:" + Math.Round(vysledek, 4));
             }
+            Console.WriteLine();
+            Console.WriteLine("--------------------------------------------------------------");
+            Console.WriteLine();
 
             Console.WriteLine("Prumer : " + Average(degrees));
             Console.WriteLine("Min : " + degrees.Min());
             Console.WriteLine("Max : " + degrees.Max());
         }
 
-
         public static double Average(int[] source)
         {
             int[] sourceNumbers = source.ToArray();
             return sourceNumbers.Take(sourceNumbers.Count()).Average();
+        }
+
+        public static void ConstructMatrix()
+        {
+
+
         }
 
         public static List<Node> InitData(string filename)
