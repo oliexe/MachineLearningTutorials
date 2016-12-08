@@ -46,7 +46,7 @@ https://networkdata.ics.uci.edu/data.php?id=105
 
 **ActorsAndMovies (Network)**
 
-+ One-mode projekci
++ One-mode projection
 + Frequency, Relative frequency of degrees
 + Degree centrality, average degree, average distance
 
