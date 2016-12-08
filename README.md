@@ -35,8 +35,21 @@ https://networkdata.ics.uci.edu/data.php?id=105
 + Min, Max, Average degree of nodes
 + Frequency, Relative frequency of degrees
 + Histograms
-+ Floyd–Warshall algorithm , Dijkstra algorithm (TODO)
-+ Closeness centrality (TODO)
++ Closeness centrality
+
++ Average clustering coefficient
++ Random graph generation
++ Floyd–Warshall algorithm , Dijkstra algorithm
++ Barabási–Albert model
+
+***
+
+**ActorsAndMovies (Network)**
+
++ One-mode projekci
++ Frequency, Relative frequency of degrees
++ Degree centrality, average degree, average distance
+
 
 ***
 
