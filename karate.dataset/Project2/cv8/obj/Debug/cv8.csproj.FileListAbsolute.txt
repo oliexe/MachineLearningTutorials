@@ -1,0 +1,24 @@
+C:\Users\maros\OneDrive\Dokumenty\Vysoka skola\1. semester\MAD\cv8\cv8\cv8\bin\Debug\cv8.exe.config
+C:\Users\maros\OneDrive\Dokumenty\Vysoka skola\1. semester\MAD\cv8\cv8\cv8\bin\Debug\cv8.exe
+C:\Users\maros\OneDrive\Dokumenty\Vysoka skola\1. semester\MAD\cv8\cv8\cv8\bin\Debug\cv8.pdb
+C:\Users\maros\OneDrive\Dokumenty\Vysoka skola\1. semester\MAD\cv8\cv8\cv8\obj\Debug\cv8.exe
+C:\Users\maros\OneDrive\Dokumenty\Vysoka skola\1. semester\MAD\cv8\cv8\cv8\obj\Debug\cv8.pdb
+C:\Users\maros\OneDrive\Dokumenty\Vysoka skola\1. semester\MAD\cv8\cv8\cv8\obj\Debug\cv8.csprojResolveAssemblyReference.cache
+C:\Users\Eduard\Desktop\MAD I\cv8\cv8\bin\Debug\cv8.exe.config
+C:\Users\Eduard\Desktop\MAD I\cv8\cv8\obj\Debug\cv8.exe
+C:\Users\Eduard\Desktop\MAD I\cv8\cv8\obj\Debug\cv8.pdb
+C:\Users\Eduard\Desktop\MAD I\cv8\cv8\bin\Debug\cv8.exe
+C:\Users\Eduard\Desktop\MAD I\cv8\cv8\bin\Debug\cv8.pdb
+C:\Users\Eduard\Desktop\MAD I\cv8\cv8\obj\Debug\cv8.csprojResolveAssemblyReference.cache
+C:\Users\maros\Downloads\cv8 (1)\cv8\cv8\bin\Debug\cv8.exe.config
+C:\Users\maros\Downloads\cv8 (1)\cv8\cv8\obj\Debug\cv8.exe
+C:\Users\maros\Downloads\cv8 (1)\cv8\cv8\obj\Debug\cv8.pdb
+C:\Users\maros\Downloads\cv8 (1)\cv8\cv8\bin\Debug\cv8.exe
+C:\Users\maros\Downloads\cv8 (1)\cv8\cv8\bin\Debug\cv8.pdb
+C:\Users\maros\Downloads\cv8 (1)\cv8\cv8\obj\Debug\cv8.csprojResolveAssemblyReference.cache
+C:\Users\olire\Desktop\cv8\cv8\bin\Debug\cv8.exe.config
+C:\Users\olire\Desktop\cv8\cv8\obj\Debug\cv8.exe
+C:\Users\olire\Desktop\cv8\cv8\obj\Debug\cv8.pdb
+C:\Users\olire\Desktop\cv8\cv8\bin\Debug\cv8.exe
+C:\Users\olire\Desktop\cv8\cv8\bin\Debug\cv8.pdb
+C:\Users\olire\Desktop\cv8\cv8\obj\Debug\cv8.csprojResolveAssemblyReference.cache
