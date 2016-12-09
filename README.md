@@ -36,7 +36,6 @@ https://networkdata.ics.uci.edu/data.php?id=105
 + Frequency, Relative frequency of degrees
 + Histograms
 + Closeness centrality
-
 + Average clustering coefficient
 + Random graph generation
 + Floyd–Warshall algorithm , Dijkstra algorithm
