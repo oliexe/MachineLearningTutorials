@@ -1,0 +1,93 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% First page of book which contains 'stuff' like: %
+%  - Book title, subtitle                         %
+%  - Book author name                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Book's title and subtitle
+\title{\Huge \textbf{Metody analýzy dat}  
+\\ \huge Analytická část projektu }
+% Author
+\author{\textsc{Ondřej Řeháček (REH0063)}}
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%
+% NEW CHAPTER! %
+%%%%%%%%%%%%%%%%
+
+\section{Dataset}
+Dataset obsahuje statistické informace o prodeji více než 16 tisíců videoherních titulů v rozdilných regionech. Je volně dostupný na internetové keggle.com a byl publikován Gregory Smithem 10.Října 2016. Obsahuje tedy poměrně aktuální data čerpána z ověřeného zdroje ve videoherním světě - vgchartz.com, pomocí Python skriptu \footnote{https://github.com/GregorUT/vgchartzScrape}. pro sběr dat z této webové stránky 
+
+\subsection{Motivace}
+Videoherní průmysl je již stejně dominantní jako filmový či hudební. Postupem času s vývojem techniky se vyvíjí i tato forma zábavy a v dnešní době mohou videohry vyprávět stejně komplexní příběhy jako celovečerní filmy. Není žádným tajemstvím, že jednotlivé kontinenty májí podstatně jinak rozložený prodej a zájem o videohry. S pomocí tohoto datasetu a jeho analýzy chci tyto rozdíly zdokumentovat a detailně popsat.
+
+\subsection{Atributy}
+\begin{tabular}{|c|l|}
+\hline
+\textbf{Rank} & Pořadí titulu v počtu prodejů. \\ \hline
+\textbf{Name} & Název herního titulu \\ \hline
+\textbf{Platform} & Platforma na které titul běží. \\ \hline
+\textbf{Year} & Rok vydání hry. \\ \hline
+\textbf{Genre} & Žánr herního titulu. \\ \hline
+\textbf{Publisher} & Vydavatel / Vývojář titulu. \\ \hline
+\textbf{NA\_Sales} & Prodeje na území státu serevní ameriky. (V miliónech) \\ \hline
+\textbf{JP\_Sales} & Prodeje na území Japonska. (V miliónech) \\ \hline
+\textbf{EU\_Sales} & Prodej na území státu Evropy. (V miliónech) \\ \hline
+\textbf{Other\_Sales} & Prodej na území zbylých státu. (V miliónech) \\ \hline
+\textbf{Global\_Sales} & Celkový počet prodaných kusů. \\ \hline
+\end{tabular}
+
+
+\subsection{Úpravy a chybějící data}
+Přibližně 27 titulů bylo opraveno, protože obsahovaly nesmyslné hodnoty. Původně je v datasetu asi 329 položek, které nemají kompletní data - jedná se převážně o chybějící rok vydání. Některé z položek byly manuálně doplněny o zjišťěná data.
+
+\subsection{Otázky, pro které hledáme odpověďi.}
+
+Kromě obecné analýzy dat, hledáme odpovědi na následující specifičtější otázky:
+
+\begin{itemize}
+\item Jak se zvětšoval videoherní trh s postupem času ?
+
+\item Jaké jsou oblíbené žánry titulů v rozdilných regionech ?
+
+\item Jaké platformy byly nejuspěšnějí ve svých generacích ?
+
+\item Které žánry byly nejdominantnější na určitých platformách ?
+
+\item Které žánry jsou nejdominantnější v určitých regionech ?
+
+\item Preferují určité regiony rozdilné vývojáře ?
+\end{itemize}
+
+\subsection{Analýza a Implementace}
+Analýza datasetu je provedena v R (IDE RStudio 1.0.44) a Python. Veškeré zdrojové kódy jsou přiloženy a byly využity následující baličky:
+
+\begin{itemize}
+\item dplyr
+
+\item ggplot2
+
+\end{itemize}
+
+\newpage
+
+\section{Obecná analýza}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+\subsection{Počet vydaných her na rok.}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis risus ante, auctor et pulvinar non, posuere ac lacus. Praesent egestas nisi id metus rhoncus ac lobortis sem hendrerit. Etiam et sapien eget lectus interdum posuere sit amet ac urna. Aliquam pellentesque imperdiet erat, eget consectetur felis malesuada quis. Pellentesque sollicitudin, odio sed dapibus eleifend, magna sem luctus turpis, id aliquam felis dolor eu diam. Etiam ullamcorper, nunc a accumsan adipiscing, turpis odio bibendum erat, id convallis magna eros nec metus. Sed vel ligula justo, sit amet vestibulum dolor. Sed vitae augue sit amet magna ullamcorper suscipit. Quisque dictum ipsum a sapien egestas facilisis. 
+
+\subsection{Lorem ipsum dolor sit amet, consectetur adipiscing}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis risus ante, auctor et pulvinar non, posuere ac lacus. Praesent egestas nisi id metus rhoncus ac lobortis sem hendrerit. Etiam et sapien eget lectus interdum posuere sit amet ac urna. Aliquam pellentesque imperdiet erat, eget consectetur felis malesuada quis. Pellentesque sollicitudin, odio sed dapibus eleifend, magna sem luctus turpis, id aliquam felis dolor eu diam.
+
+\end{document}
