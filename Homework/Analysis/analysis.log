@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.23)  9 DEC 2016 17:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.23)  11 DEC 2016 02:52
 entering extended mode
 **./analysis.tex
 (analysis.tex
@@ -540,29 +540,29 @@ File: babel.def 2016/04/23 3.9r Babel common definitions
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
 ))
-No file analysis.aux.
+(analysis.aux)
 \openout1 = `analysis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 21.
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 12.
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 \AtBeginShipoutBox=\box26
-Package hyperref Info: Link coloring OFF on input line 21.
+Package hyperref Info: Link coloring OFF on input line 12.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -572,9 +572,11 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count99
 )
-LaTeX Info: Redefining \ref on input line 21.
-LaTeX Info: Redefining \pageref on input line 21.
-LaTeX Info: Redefining \nameref on input line 21.
+LaTeX Info: Redefining \ref on input line 12.
+LaTeX Info: Redefining \pageref on input line 12.
+LaTeX Info: Redefining \nameref on input line 12.
+
+(analysis.out) (analysis.out)
 \@outlinefile=\write3
 \openout3 = `analysis.out'.
 
@@ -605,49 +607,49 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 23.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 14.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 23.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 14.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 23.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 14.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 23.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 14.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 23.
+(Font)              <12> on input line 14.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 23.
+(Font)              <8> on input line 14.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 23.
+(Font)              <6> on input line 14.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 29.
+(Font)              <10.95> on input line 16.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 29.
+(Font)              <9> on input line 16.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 29.
+(Font)              <5> on input line 16.
 
-Overfull \hbox (0.34837pt too wide) in paragraph at lines 35--49
+Overfull \hbox (0.34837pt too wide) in paragraph at lines 22--36
 [] 
  []
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+e'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 51.
+(hyperref)                removing `\textasciicaron' on input line 38.
 
 [1
 
@@ -655,50 +657,141 @@ Package hyperref Warning: Composite letter `\textasciicaron+e'
 
 Package hyperref Warning: Composite letter `\textasciicaron+e'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 54.
+(hyperref)                removing `\textasciicaron' on input line 41.
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+d'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 54.
+(hyperref)                removing `\textasciicaron' on input line 41.
 
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 59.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 46.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 59.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 46.
  [2]
+
+Package hyperref Warning: Composite letter `\textring+u'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textring' on input line 79.
+
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 87.
+(hyperref)                removing `\textasciicaron' on input line 99.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 93.
-[3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 93.
+
+Package hyperref Warning: Composite letter `\textring+u'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textring' on input line 99.
+
+<Rplot.png, id=92, 473.51906pt x 274.02374pt>
+File: Rplot.png Graphic file (type png)
+ <use Rplot.png>
+Package pdftex.def Info: Rplot.png used on input line 101.
+(pdftex.def)             Requested size: 378.81575pt x 219.21928pt.
+
+Overfull \hbox (18.81575pt too wide) in paragraph at lines 101--102
+[] 
+ []
+
+[3 <./Rplot.png>] <Rplot03.png, id=98, 473.51906pt x 274.02374pt>
+File: Rplot03.png Graphic file (type png)
+
+<use Rplot03.png>
+Package pdftex.def Info: Rplot03.png used on input line 116.
+(pdftex.def)             Requested size: 355.13841pt x 205.5173pt.
+ <Rplot02.png, id=99, 473.51906pt x 274.02374pt>
+File: Rplot02.png Graphic file (type png)
+
+<use Rplot02.png>
+Package pdftex.def Info: Rplot02.png used on input line 122.
+(pdftex.def)             Requested size: 426.1632pt x 246.61908pt.
+
+Overfull \hbox (83.1632pt too wide) in paragraph at lines 122--123
+[][] 
+ []
+
+[4 <./Rplot03.png> <./Rplot02.png>]
+<Rplot04.png, id=106, 473.51906pt x 274.02374pt>
+File: Rplot04.png Graphic file (type png)
+ <use Rplot04.png>
+Package pdftex.def Info: Rplot04.png used on input line 130.
+(pdftex.def)             Requested size: 355.13841pt x 205.5173pt.
+
+<Rplot06.png, id=107, 473.51906pt x 274.02374pt>
+File: Rplot06.png Graphic file (type png)
+ <use Rplot06.png>
+Package pdftex.def Info: Rplot06.png used on input line 135.
+(pdftex.def)             Requested size: 426.1632pt x 246.61908pt.
+
+Overfull \hbox (83.1632pt too wide) in paragraph at lines 135--136
+[][] 
+ []
+
+[5 <./Rplot04.png> <./Rplot06.png>]
+<Rplot10.png, id=114, 473.51906pt x 275.52937pt>
+File: Rplot10.png Graphic file (type png)
+ <use Rplot10.png>
+Package pdftex.def Info: Rplot10.png used on input line 145.
+(pdftex.def)             Requested size: 378.81575pt x 220.42378pt.
+
+Overfull \hbox (18.81575pt too wide) in paragraph at lines 145--146
+[] 
+ []
+
+[6 <./Rplot10.png>] <Rplot11.png, id=120, 473.51906pt x 275.52937pt>
+File: Rplot11.png Graphic file (type png)
+
+<use Rplot11.png>
+Package pdftex.def Info: Rplot11.png used on input line 165.
+(pdftex.def)             Requested size: 378.81575pt x 220.42378pt.
+
+Overfull \hbox (18.81575pt too wide) in paragraph at lines 165--166
+[] 
+ []
+
+[7 <./Rplot11.png>] <Rplot12.png, id=127, 473.51906pt x 275.52937pt>
+File: Rplot12.png Graphic file (type png)
+
+<use Rplot12.png>
+Package pdftex.def Info: Rplot12.png used on input line 184.
+(pdftex.def)             Requested size: 378.81575pt x 220.42378pt.
+
+Overfull \hbox (18.81575pt too wide) in paragraph at lines 184--185
+[] 
+ []
+
+[8 <./Rplot12.png>] <Rplot07.png, id=133, 602.25pt x 347.79938pt>
+File: Rplot07.png Graphic file (type png)
+
+<use Rplot07.png>
+Package pdftex.def Info: Rplot07.png used on input line 207.
+(pdftex.def)             Requested size: 451.68639pt x 260.84889pt.
+
+Overfull \hbox (91.68639pt too wide) in paragraph at lines 207--208
+[] 
+ []
+
+[9 <./Rplot07.png (PNG copy)>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 226.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 226.
  (analysis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 93.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 93.
-
-
-Package rerunfilecheck Warning: File `analysis.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `analysis.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  3DD79B2E97DCBF9CAE235C3993FF6324;645.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 93.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 226.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 226.
+Package rerunfilecheck Info: File `analysis.out' has not changed.
+(rerunfilecheck)             Checksum: 9CCC79F82B4CE2553D7E5E2E7C2D3935;1179.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 226.
  ) 
 Here is how much of TeX's memory you used:
- 6102 strings out of 493334
- 87717 string characters out of 3136672
- 174740 words of memory out of 3000000
- 9544 multiletter control sequences out of 15000+200000
+ 6187 strings out of 493334
+ 88889 string characters out of 3136672
+ 176918 words of memory out of 3000000
+ 9599 multiletter control sequences out of 15000+200000
  68320 words of font info for 49 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,8n,31p,710b,331s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,8n,31p,491b,331s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Progr
 am Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files (x86)/
 MiKTeX 2.9/fonts/type1/public/lm/lmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/
@@ -710,9 +803,9 @@ iles (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr6.pfb><C:/Program Files (x86)/Mi
 KTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
 s/type1/public/lm/lmr9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
 c/lm/lmsy10.pfb>
-Output written on analysis.pdf (3 pages, 231517 bytes).
+Output written on analysis.pdf (9 pages, 329923 bytes).
 PDF statistics:
- 75 PDF objects out of 1000 (max. 8388607)
- 14 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 180 PDF objects out of 1000 (max. 8388607)
+ 28 named destinations out of 1000 (max. 500000)
+ 182 words of extra memory for PDF output out of 10000 (max. 10000000)
 
