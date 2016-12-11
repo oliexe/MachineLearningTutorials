@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.23)  11 DEC 2016 02:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.23)  11 DEC 2016 23:11
 entering extended mode
 **./analysis.tex
 (analysis.tex
@@ -642,14 +642,10 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 16.
 
-Overfull \hbox (0.34837pt too wide) in paragraph at lines 22--36
-[] 
- []
-
 
 Package hyperref Warning: Composite letter `\textasciicaron+e'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 38.
+(hyperref)                removing `\textasciicaron' on input line 22.
 
 [1
 
@@ -657,143 +653,296 @@ Package hyperref Warning: Composite letter `\textasciicaron+e'
 
 Package hyperref Warning: Composite letter `\textasciicaron+e'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 41.
+(hyperref)                removing `\textasciicaron' on input line 27.
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+d'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 41.
+(hyperref)                removing `\textasciicaron' on input line 27.
 
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 46.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 32.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 46.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 32.
  [2]
 
 Package hyperref Warning: Composite letter `\textring+u'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textring' on input line 79.
+(hyperref)                removing `\textring' on input line 67.
 
+
+Overfull \hbox (0.34837pt too wide) in paragraph at lines 69--83
+[] 
+ []
+
+[3]
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 99.
+(hyperref)                removing `\textasciicaron' on input line 108.
 
 
 Package hyperref Warning: Composite letter `\textring+u'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textring' on input line 99.
+(hyperref)                removing `\textring' on input line 108.
 
-<Rplot.png, id=92, 473.51906pt x 274.02374pt>
+<Rplot.png, id=116, 473.51906pt x 274.02374pt>
 File: Rplot.png Graphic file (type png)
  <use Rplot.png>
-Package pdftex.def Info: Rplot.png used on input line 101.
+Package pdftex.def Info: Rplot.png used on input line 110.
 (pdftex.def)             Requested size: 378.81575pt x 219.21928pt.
 
-Overfull \hbox (18.81575pt too wide) in paragraph at lines 101--102
+Overfull \hbox (18.81575pt too wide) in paragraph at lines 110--111
 [] 
  []
 
-[3 <./Rplot.png>] <Rplot03.png, id=98, 473.51906pt x 274.02374pt>
+
+Overfull \hbox (6.18025pt too wide) in paragraph at lines 113--114
+[]\T1/lmr/m/n/10.95 Obrovský nárust prodej· her v roce 1994 po dos-tup-nosti \T
+1/lmr/bx/n/10.95 Sony Playsta-
+ []
+
+
+Overfull \hbox (11.20346pt too wide) in paragraph at lines 117--118
+\T1/lmr/bx/n/10.95 Xbox 360 (85 mil.)\T1/lmr/m/n/10.95 , \T1/lmr/bx/n/10.95 Pla
+ysta-tion 3 (84 mil.)\T1/lmr/m/n/10.95 , \T1/lmr/bx/n/10.95 Playsta-tion Portab
+le
+ []
+
+[4 <./Rplot.png>] <Rplot03.png, id=122, 473.51906pt x 274.02374pt>
 File: Rplot03.png Graphic file (type png)
 
 <use Rplot03.png>
-Package pdftex.def Info: Rplot03.png used on input line 116.
+Package pdftex.def Info: Rplot03.png used on input line 125.
 (pdftex.def)             Requested size: 355.13841pt x 205.5173pt.
- <Rplot02.png, id=99, 473.51906pt x 274.02374pt>
+ <Rplot02.png, id=123, 473.51906pt x 274.02374pt>
 File: Rplot02.png Graphic file (type png)
 
 <use Rplot02.png>
-Package pdftex.def Info: Rplot02.png used on input line 122.
+Package pdftex.def Info: Rplot02.png used on input line 131.
 (pdftex.def)             Requested size: 426.1632pt x 246.61908pt.
 
-Overfull \hbox (83.1632pt too wide) in paragraph at lines 122--123
+Overfull \hbox (83.1632pt too wide) in paragraph at lines 131--132
 [][] 
  []
 
-[4 <./Rplot03.png> <./Rplot02.png>]
-<Rplot04.png, id=106, 473.51906pt x 274.02374pt>
+[5 <./Rplot03.png> <./Rplot02.png>]
+<Rplot04.png, id=130, 473.51906pt x 274.02374pt>
 File: Rplot04.png Graphic file (type png)
  <use Rplot04.png>
-Package pdftex.def Info: Rplot04.png used on input line 130.
+Package pdftex.def Info: Rplot04.png used on input line 140.
 (pdftex.def)             Requested size: 355.13841pt x 205.5173pt.
 
-<Rplot06.png, id=107, 473.51906pt x 274.02374pt>
+<Rplot06.png, id=131, 473.51906pt x 274.02374pt>
 File: Rplot06.png Graphic file (type png)
  <use Rplot06.png>
-Package pdftex.def Info: Rplot06.png used on input line 135.
+Package pdftex.def Info: Rplot06.png used on input line 144.
 (pdftex.def)             Requested size: 426.1632pt x 246.61908pt.
 
-Overfull \hbox (83.1632pt too wide) in paragraph at lines 135--136
+Overfull \hbox (83.1632pt too wide) in paragraph at lines 144--145
 [][] 
  []
 
-[5 <./Rplot04.png> <./Rplot06.png>]
-<Rplot10.png, id=114, 473.51906pt x 275.52937pt>
-File: Rplot10.png Graphic file (type png)
- <use Rplot10.png>
-Package pdftex.def Info: Rplot10.png used on input line 145.
-(pdftex.def)             Requested size: 378.81575pt x 220.42378pt.
+[6 <./Rplot04.png> <./Rplot06.png>]
 
-Overfull \hbox (18.81575pt too wide) in paragraph at lines 145--146
+Package hyperref Warning: Composite letter `\textasciicaron+e'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 150.
+
+<Rplot15.png, id=138, 473.51906pt x 275.52937pt>
+File: Rplot15.png Graphic file (type png)
+ <use Rplot15.png>
+Package pdftex.def Info: Rplot15.png used on input line 152.
+(pdftex.def)             Requested size: 426.1632pt x 247.97412pt.
+
+Overfull \hbox (66.1632pt too wide) in paragraph at lines 152--153
 [] 
  []
 
-[6 <./Rplot10.png>] <Rplot11.png, id=120, 473.51906pt x 275.52937pt>
+[7 <./Rplot15.png>]
+
+Package hyperref Warning: Composite letter `\textasciicaron+e'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 158.
+
+
+Package hyperref Warning: Composite letter `\textasciicaron+e'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 158.
+
+<Rplot10.png, id=145, 473.51906pt x 275.52937pt>
+File: Rplot10.png Graphic file (type png)
+ <use Rplot10.png>
+Package pdftex.def Info: Rplot10.png used on input line 161.
+(pdftex.def)             Requested size: 378.81575pt x 220.42378pt.
+
+Overfull \hbox (18.81575pt too wide) in paragraph at lines 161--162
+[] 
+ []
+
+[8 <./Rplot10.png>] <Rplot11.png, id=151, 473.51906pt x 275.52937pt>
 File: Rplot11.png Graphic file (type png)
 
 <use Rplot11.png>
-Package pdftex.def Info: Rplot11.png used on input line 165.
+Package pdftex.def Info: Rplot11.png used on input line 181.
 (pdftex.def)             Requested size: 378.81575pt x 220.42378pt.
 
-Overfull \hbox (18.81575pt too wide) in paragraph at lines 165--166
+Overfull \hbox (18.81575pt too wide) in paragraph at lines 181--182
 [] 
  []
 
-[7 <./Rplot11.png>] <Rplot12.png, id=127, 473.51906pt x 275.52937pt>
+[9 <./Rplot11.png>] <Rplot12.png, id=157, 473.51906pt x 275.52937pt>
 File: Rplot12.png Graphic file (type png)
 
 <use Rplot12.png>
-Package pdftex.def Info: Rplot12.png used on input line 184.
+Package pdftex.def Info: Rplot12.png used on input line 200.
 (pdftex.def)             Requested size: 378.81575pt x 220.42378pt.
 
-Overfull \hbox (18.81575pt too wide) in paragraph at lines 184--185
+Overfull \hbox (18.81575pt too wide) in paragraph at lines 200--201
 [] 
  []
 
-[8 <./Rplot12.png>] <Rplot07.png, id=133, 602.25pt x 347.79938pt>
+[10 <./Rplot12.png>] <Rplot07.png, id=163, 602.25pt x 347.79938pt>
 File: Rplot07.png Graphic file (type png)
 
 <use Rplot07.png>
-Package pdftex.def Info: Rplot07.png used on input line 207.
+Package pdftex.def Info: Rplot07.png used on input line 221.
 (pdftex.def)             Requested size: 451.68639pt x 260.84889pt.
 
-Overfull \hbox (91.68639pt too wide) in paragraph at lines 207--208
+Overfull \hbox (91.68639pt too wide) in paragraph at lines 221--222
 [] 
  []
 
-[9 <./Rplot07.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 226.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 226.
+<lifecycle.png, id=164, 120.75113pt x 52.09462pt>
+File: lifecycle.png Graphic file (type png)
+ <use lifecycle.png>
+Package pdftex.def Info: lifecycle.png used on input line 231.
+(pdftex.def)             Requested size: 241.50162pt x 104.18893pt.
+ [11 <./Rplot07.png (PNG copy)> <./lifecycle.png>]
+
+Package hyperref Warning: Composite letter `\textasciicaron+r'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 241.
+
+<1stparty.png, id=169, 864.98157pt x 350.05782pt>
+File: 1stparty.png Graphic file (type png)
+ <use 1stparty.png>
+Package pdftex.def Info: 1stparty.png used on input line 244.
+(pdftex.def)             Requested size: 432.48973pt x 175.02847pt.
+
+Overfull \hbox (72.48973pt too wide) in paragraph at lines 244--245
+[] 
+ []
+
+
+Package hyperref Warning: Composite letter `\textasciicaron+e'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 248.
+
+
+Package hyperref Warning: Composite letter `\textasciicaron+c'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 248.
+
+<EA.png, id=171, 871.75688pt x 296.60812pt>
+File: EA.png Graphic file (type png)
+ <use EA.png>
+Package pdftex.def Info: EA.png used on input line 249.
+(pdftex.def)             Requested size: 435.87738pt x 148.3037pt.
+
+Overfull \hbox (75.87738pt too wide) in paragraph at lines 249--250
+[] 
+ []
+
+
+Package hyperref Warning: Composite letter `\textasciicaron+e'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 253.
+
+
+Package hyperref Warning: Composite letter `\textasciicaron+c'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 253.
+
+<capcom.png, id=172, 897.3525pt x 317.68687pt>
+File: capcom.png Graphic file (type png)
+ <use capcom.png>
+Package pdftex.def Info: capcom.png used on input line 254.
+(pdftex.def)             Requested size: 448.67514pt x 158.84303pt.
+
+Overfull \hbox (88.67514pt too wide) in paragraph at lines 254--255
+[] 
+ []
+
+[12 <./1stparty.png> <./EA.png>]
+Overfull \hbox (0.577pt too wide) in paragraph at lines 256--257
+[]\T1/lmr/m/n/10.95 Japonské spole£nosti op¥t ukazují ne-jv¥t²í zá-jem o do-mac
+í kon-zole. P°ek-
+ []
+
+[13 <./capcom.png>]
+
+Package hyperref Warning: Composite letter `\textring+u'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textring' on input line 261.
+
+
+Package hyperref Warning: Composite letter `\textring+u'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textring' on input line 261.
+
+
+Package hyperref Warning: Composite letter `\textasciicaron+e'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 261.
+
+<Rplot19.png, id=185, 473.51906pt x 275.52937pt>
+File: Rplot19.png Graphic file (type png)
+ <use Rplot19.png>
+Package pdftex.def Info: Rplot19.png used on input line 262.
+(pdftex.def)             Requested size: 378.81575pt x 220.42378pt.
+
+Overfull \hbox (18.81575pt too wide) in paragraph at lines 262--263
+[] 
+ []
+
+
+Package hyperref Warning: Composite letter `\textring+u'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textring' on input line 264.
+
+<Rplot09.png, id=186, 602.25pt x 350.05782pt>
+File: Rplot09.png Graphic file (type png)
+ <use Rplot09.png>
+Package pdftex.def Info: Rplot09.png used on input line 265.
+(pdftex.def)             Requested size: 391.45786pt x 227.53487pt.
+
+Overfull \hbox (31.45786pt too wide) in paragraph at lines 265--266
+[] 
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 270.
+[14 <./Rplot19.png> <./Rplot09.png (PNG copy)>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 270.
  (analysis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 226.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 226.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 270.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 270.
 Package rerunfilecheck Info: File `analysis.out' has not changed.
-(rerunfilecheck)             Checksum: 9CCC79F82B4CE2553D7E5E2E7C2D3935;1179.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 226.
+(rerunfilecheck)             Checksum: B868DD23EF018E481D011E71B78FAC23;1740.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 270.
  ) 
 Here is how much of TeX's memory you used:
- 6187 strings out of 493334
- 88889 string characters out of 3136672
- 176918 words of memory out of 3000000
- 9599 multiletter control sequences out of 15000+200000
+ 6238 strings out of 493334
+ 89627 string characters out of 3136672
+ 177919 words of memory out of 3000000
+ 9633 multiletter control sequences out of 15000+200000
  68320 words of font info for 49 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  29i,8n,31p,491b,331s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Progr
-am Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files (x86)/
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program F
+iles (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}<C:/Program Files (x86)/
 MiKTeX 2.9/fonts/type1/public/lm/lmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/
 fonts/type1/public/lm/lmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
 /public/lm/lmcsc10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm
@@ -803,9 +952,9 @@ iles (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr6.pfb><C:/Program Files (x86)/Mi
 KTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
 s/type1/public/lm/lmr9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
 c/lm/lmsy10.pfb>
-Output written on analysis.pdf (9 pages, 329923 bytes).
+Output written on analysis.pdf (14 pages, 447615 bytes).
 PDF statistics:
- 180 PDF objects out of 1000 (max. 8388607)
- 28 named destinations out of 1000 (max. 500000)
- 182 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 238 PDF objects out of 1000 (max. 8388607)
+ 38 named destinations out of 1000 (max. 500000)
+ 257 words of extra memory for PDF output out of 10000 (max. 10000000)
 

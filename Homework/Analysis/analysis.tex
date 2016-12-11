@@ -18,25 +18,11 @@ Dataset obsahuje statistické informace o prodeji více než 16 tisíců nejprod
 \subsection{Motivace}
 Videoherní průmysl je již stejně dominantní jako filmový či hudební. Postupem času s vývojem techniky se vyvíjí i tato forma zábavy a v dnešní době mohou videohry vyprávět stejně komplexní příběhy jako celovečerní filmy. Není žádným tajemstvím, že jednotlivé kontinenty májí podstatně jinak rozložený prodej a zájem o videohry. S pomocí tohoto datasetu a jeho analýzy chci tyto rozdíly zdokumentovat a detailně popsat.
 
-\subsection{Atributy}
-\begin{tabular}{|c|l|}
-\hline
-\textbf{Rank} & Pořadí titulu v počtu prodejů. \\ \hline
-\textbf{Name} & Název herního titulu \\ \hline
-\textbf{Platform} & Platforma na které titul běží. \\ \hline
-\textbf{Year} & Rok vydání hry. \\ \hline
-\textbf{Genre} & Žánr herního titulu. \\ \hline
-\textbf{Publisher} & Vydavatel / Vývojář titulu. \\ \hline
-\textbf{NA\_Sales} & Prodeje na území státu serevní ameriky. (V miliónech) \\ \hline
-\textbf{JP\_Sales} & Prodeje na území Japonska. (V miliónech) \\ \hline
-\textbf{EU\_Sales} & Prodej na území státu Evropy. (V miliónech) \\ \hline
-\textbf{Other\_Sales} & Prodej na území zbylých státu. (V miliónech) \\ \hline
-\textbf{Global\_Sales} & Celkový počet prodaných kusů. \\ \hline
-\end{tabular}
-
 
 \subsection{Úpravy a chybějící data}
 Přibližně 27 titulů bylo opraveno, protože obsahovaly nesmyslné hodnoty. Původně je v datasetu asi 329 položek, které nemají kompletní data - jedná se převážně o chybějící rok vydání. Některé z položek byly manuálně doplněny o zjišťěná data.
+
+\newpage
 
 \subsection{Otázky, pro které hledáme odpověďi.}
 
@@ -66,9 +52,11 @@ Analýza datasetu je provedena v R (IDE RStudio 1.0.44) a byly využity následu
 
 \item dplyr
 
-\item scales
+\item scalesR
 
 \item reshape2
+
+\item fmsb
 \end{itemize}
 
 \newpage
@@ -77,6 +65,23 @@ Analýza datasetu je provedena v R (IDE RStudio 1.0.44) a byly využity následu
 
 
 \subsection{Analýza atributů}
+
+\begin{tabular}{|c|l|}
+\hline
+\textbf{Rank} & Pořadí titulu v počtu prodejů. \\ \hline
+\textbf{Name} & Název herního titulu \\ \hline
+\textbf{Platform} & Platforma na které titul běží. \\ \hline
+\textbf{Year} & Rok vydání hry. \\ \hline
+\textbf{Genre} & Žánr herního titulu. \\ \hline
+\textbf{Publisher} & Vydavatel / Vývojář titulu. \\ \hline
+\textbf{NA\_Sales} & Prodeje na území státu serevní ameriky. (V miliónech) \\ \hline
+\textbf{JP\_Sales} & Prodeje na území Japonska. (V miliónech) \\ \hline
+\textbf{EU\_Sales} & Prodej na území státu Evropy. (V miliónech) \\ \hline
+\textbf{Other\_Sales} & Prodej na území zbylých státu. (V miliónech) \\ \hline
+\textbf{Global\_Sales} & Celkový počet prodaných kusů. \\ \hline
+\end{tabular}
+
+
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
@@ -96,16 +101,20 @@ Analýza datasetu je provedena v R (IDE RStudio 1.0.44) a byly využity následu
 \end{center}
 
 
+
+\newpage
+
+
 \subsection{Počet titulů na rok.}
 
 \includegraphics[scale=0.8]{Rplot}
 
 \begin{itemize}
-\item Nárust v roce 1994 po dostupnosti \textbf{Sony Playstation (102 mil.)}
+\item Obrovský nárust prodejů her v roce 1994 po dostupnosti \textbf{Sony Playstation (102 mil.)}
 
-\item Po roce 2001, kdy se na trh dostává historicky nejprodávanější konzole Sony \textbf{Playstation 2 (> 155 mil.)}.
+\item Další enormní nárust po roce 2001, kdy se na trh dostává historicky nejprodávanější konzole Sony \textbf{Playstation 2 (> 155 mil.)}.
 
-\item V letech 2005-2011 najdeme hodnoty nejvyšší, vzhledem k tomu, že trh ovládá \textbf{Nintendo DS (154 mil.)} , \textbf{Nintendo Wii (101 mil.)}, \textbf{Xbox 360 (85 mil.)}, \textbf{Playstation 3 (84 mil.)}  najednou - všechny astronomicky úspěšné produkty.
+\item V letech 2005-2011 najdeme hodnoty nejvyšší, vzhledem k tomu, na trhu jsou \textbf{Nintendo DS (154 mil.)} , \textbf{Nintendo Wii (101 mil.)}, \textbf{Xbox 360 (85 mil.)}, \textbf{Playstation 3 (84 mil.)}, \textbf{Playstation Portable (82 mil.)}  najednou - všechny astronomicky úspěšné produkty.
 \end{itemize}
 
 
@@ -115,7 +124,7 @@ Analýza datasetu je provedena v R (IDE RStudio 1.0.44) a byly využity následu
 
 \includegraphics[scale=0.75]{Rplot03}
 
-Zde lze potvrdit tvrzení uvedené u grafu 2.1. Jasně dominují právě ty nejlépe prodávané platformy, které mohou za nárůsty umístěných titulů v době kdy byly uvedeny a prodávány. 
+Zde lze potvrdit tvrzení uvedené u grafu 2.2. Jasně dominují právě ty nejlépe prodávané platformy, které mohou za nárůsty umístěných titulů v době kdy byly uvedeny a prodávány. 
 
 
 
@@ -127,10 +136,10 @@ Také se projevuje preference jednotlivých regionu - Sony ze svou řadou Playst
 
 \subsection{Oblíbené žánry}
 
+
 \includegraphics[scale=0.75]{Rplot04}
 
 Nejoblíbenějším žánrem jsou akční hry. Na druhém místě doprovázeny sportovními hrami, které se uvádí na trh pravidelně každý rok a proto představují velkou část datasetu. Nejméně se vyskytují logické a strategické hry.
-
 
 \includegraphics[scale=0.9]{Rplot06}
 
@@ -138,8 +147,15 @@ Při rozdělení prodejů jednotlivých žánru do regionu se opět projevují j
 
 \newpage
 
+\subsection{Nejprodávanější tituly ve své žánrové kategorii}
 
-\subsection{Vydavatelé a tituly podle regionu}
+\includegraphics[scale=0.9]{Rplot15}
+
+V případě titulů, které jsou historicky prodejně nejůspěšnější ve své žánrové kategorii patří všechny společnosti Nintendo s vyjímkou kategorie Akčni, kde se na prvním místě umístilo Grand Theft Auto V.
+
+\newpage
+
+\subsection{Nejúspěšnějí vydavatelé a tituly podle regionu}
 
 \subsubsection{Evropa}
 \includegraphics[scale=0.8]{Rplot10}
@@ -200,8 +216,6 @@ Klasicky v Japonském regionu je situace úplně jiná. Je zde jasně vidět pre
 \newpage
 
 
-\section{Specifická analýza}
-
 \subsection{Životnost platforem}
 
 \includegraphics[scale=0.75]{Rplot07}
@@ -213,14 +227,44 @@ Na tomto grafu můžeme nejen sledovat životnost jednotlivých konzolí, ale t�
 
 \item V datasetu jde skvěle vidět, jak se generace konzolí prolínají (Atari 2600 -> Nintendo NES) a známe značky se vyvíjí (Sony Playstation -> Sony Playstation 4).
 
+\begin{center}
+\includegraphics[scale=2.0]{lifecycle}
+\end{center}
+
 \item Životnost herní platformy (Nepočítaje osobní počítače.) je průměrně 10 let.
 
 \end{itemize}
 
 
+\newpage
+
+\subsection{Jaké platformy preferuji vývojáři}
+
+\subsubsection{1st party studia}
+\includegraphics[scale=0.5]{1stparty}
+
+V případě vývojářu patřících pod výrobce konzolí jsou grafy poměrně předvídatelné, každá ze společnosti vydává tituly exkluzivně pro své zařízení. Vyjímka je Microsoft, který kromě konzolí vydává také na PC s Windows.
+
+\subsubsection{Největší USA/EU společnosti}
+\includegraphics[scale=0.5]{EA}
+
+Všechny nezávislé společnosti se soustředí obecně na ty nejúspěšnější konzole v aktuální generaci. V případě ubisoftu lze pozorovat také velký zájem o konzole společnosti Nintendo, kde vydávají sve rodinné a "casual" herní tituly. Toto se však nedá říct o EA a Activision, kteří sve tituly na Nintendo vydavají velmi zřídka a výrazně preferují Sony Playstation a Microsoft Xbox.
+
+\subsubsection{Největší Japonské společnosti}
+\includegraphics[scale=0.5]{capcom}
+
+Japonské společnosti opět ukazují největší zájem o domací konzole. Překvapením je menší počet titulů pro domací konzole Nintenda, kde spíše vyvíjejí menší Japonští vývojáři či samotné Nintendo své exkluzivní tituly (viz 2.10.1). V poslední době se začiná zvedat zájem i o Microsoft Xbox.
+
 
 \newpage
 
+\subsection{Popularita žánrů v průběhu let}
+\includegraphics[scale=0.8]{Rplot19}
+
+\subsection{Popularita žánrů podle platformy}
+\includegraphics[scale=0.65]{Rplot09}
+
+Po roce 1994 se začínají prosazovat hry akční, RPG a sportovní. Po roce 2000 pak popularita sportovních a akčních her ještě výrazně zesiluje. Rozložení žánru na platformách je vyvážené. Konzole společnosti Nintendo mají více "casual" her - tedy přístupných, rodiných jednoduchých titulů. Playstation a Xbox naopak více akčních titulů zaměřených na "ostřílenější" hráče.
 
 
 \end{document}
