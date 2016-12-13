@@ -8,9 +8,11 @@ namespace REH0063_MAD1
 {
     internal class Graph
     {
-        private PlotModel graf = new PlotModel();
+        private PlotModel _graph = new PlotModel();
 
-        //Grafování rozložení x,y
+        /// <summary>
+        /// Adding of points into graph
+        /// </summary>
         public void AddToGraph(List<double> x, List<double> y, int ClusterNum, byte r, byte g, byte b, MarkerType marker)
         {
             var scatterSeries = new ScatterSeries { MarkerType = marker, MarkerStroke = OxyColor.FromRgb(r, g, b) };
@@ -20,7 +22,7 @@ namespace REH0063_MAD1
                 scatterSeries.Points.Add(new ScatterPoint(x[i], y[i]));
             }
 
-            graf.Series.Add(scatterSeries);
+            _graph.Series.Add(scatterSeries);
         }
 
         public void AddToGraph(List<double> x, List<double> y, int ClusterNum, byte r, byte g, byte b)
@@ -28,17 +30,23 @@ namespace REH0063_MAD1
             AddToGraph(x, y, ClusterNum, r, g, b, MarkerType.Circle);
         }
 
+        /// <summary>
+        /// Generate PDF out of this instance of graph
+        /// </summary>
         public void GenerateGraph(string name)
         {
             var scatterSeries2 = new ScatterSeries { MarkerType = MarkerType.Diamond, MarkerStroke = OxyColor.FromRgb(0, 0, 0) };
 
-            using (var stream = File.Create("Output/"+ name +"Clustering.pdf"))
+            using (var stream = File.Create("Output/" + name + "Clustering.pdf"))
             {
                 var pdfExporter = new PdfExporter { Width = 1000, Height = 1000 };
-                pdfExporter.Export(graf, stream);
+                pdfExporter.Export(_graph, stream);
             }
         }
 
+        /// <summary>
+        /// Get random color for cluster separation
+        /// </summary>
         public byte[] GetRandomColor()
         {
             System.Threading.Thread.Sleep(50);

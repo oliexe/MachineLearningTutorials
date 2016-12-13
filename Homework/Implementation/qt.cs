@@ -6,51 +6,49 @@ namespace REH0063_MAD1
 {
     internal class qt
     {
-        public qt(List<Videogame> data)
+        /// <summary>
+        /// Run QT and generate output
+        /// </summary>
+        public qt(List<Videogame> data, int maxDiameter)
         {
             Console.WriteLine("QR Clustering....");
             List<Videogame> data_cleaned = new List<Videogame>();
             List<Point> points = new List<Point>();
 
-            // Throw off uncomplete data
+            // Throw off uncomplete data with 0 values - not to mess up clustering
             for (int i = 0; i < data.Count; i++)
             {
-                if (data[i].euSales > 0)
+                if (data[i]._euSales > 0)
                 {
                     data_cleaned.Add(data[i]);
                 }
             }
 
+            // Convert cleaned data into "Point" structure used for clustering
             for (int i = 0; i < data_cleaned.Count; i++)
             {
-                    points.Add(new Point(data_cleaned[i].naSales, data_cleaned[i].euSales, data_cleaned[i].name));
+                points.Add(new Point(data_cleaned[i]._naSales, data_cleaned[i]._euSales, data_cleaned[i]._name));
             }
 
-            //Nejlepe 3 (mil)
-            double maxDiameter = 3;
-
-
+            //BEGIN CLUSTERING!
             List<List<Point>> clusters = GetClusters(points, maxDiameter);
-            Console.Clear();
-            // print points to console
-            Console.WriteLine();
-            // print clusters to console
 
-            Graph graf = new Graph();
-            List<double> pointsX = new List<double>();
-            List<double> pointsY = new List<double>();
-
+            //Generate graph and output files...
             using (StreamWriter writetext = new StreamWriter("output/QTclusters.txt"))
             {
+                Graph graf = new Graph();
+                List<double> pointsX = new List<double>();
+                List<double> pointsY = new List<double>();
+
                 for (int i = 0; i < clusters.Count; i++)
-            {
-                int count = clusters[i].Count;
+                {
+                    int count = clusters[i].Count;
                     writetext.WriteLine("\nCluster {0} consists of {1} games :\n", i + 1, count);
-                foreach (Point p in clusters[i])
+                    foreach (Point p in clusters[i])
                     {
-                        writetext.WriteLine(" {0} " + p.Name, p);
-                        pointsX.Add(p.X);
-                        pointsY.Add(p.Y);
+                        writetext.WriteLine(" {0} " + p._name, p);
+                        pointsX.Add(p._X);
+                        pointsY.Add(p._Y);
                     }
 
                     byte[] color = graf.GetRandomColor();
@@ -59,22 +57,24 @@ namespace REH0063_MAD1
                     pointsY.Clear();
 
                     writetext.WriteLine();
-            }
+                }
                 graf.GenerateGraph("qt");
             }
         }
 
+        /// <summary>
+        /// QT clustering function on the list of points
+        /// </summary>
         private static List<List<Point>> GetClusters(List<Point> points, double maxDiameter)
         {
-            if (points == null) return null;
-            points = new List<Point>(points); // leave original List unaltered
+            points = new List<Point>(points);
             List<List<Point>> clusters = new List<List<Point>>();
+
             while (points.Count > 0)
             {
                 List<Point> bestCandidate = GetBestCandidate(points, maxDiameter);
                 clusters.Add(bestCandidate);
             }
-
             return clusters;
         }
 
@@ -112,7 +112,7 @@ namespace REH0063_MAD1
                     {
                         if (candidateNumbers[j] > 0) continue; // point already allocated to a candidate
                                                                // update diameters squared to allow for latest point added to current cluster
-                        double distSquared = Point.DistanceSquared(latestPoint, points[j]);
+                        double distSquared = Point.Dist(latestPoint, points[j]);
                         if (distSquared > diametersSquared[j]) diametersSquared[j] = distSquared;
                         // check if closer than previous closest point
                         if (diametersSquared[j] < minDiameterSquared)

@@ -7,6 +7,9 @@ namespace REH0063_MAD1
 {
     internal class Loader
     {
+        /// <summary>
+        /// Load Video Game Sales CSV
+        /// </summary>
         public List<Videogame> csv(string filename)
         {
             var reader = new StreamReader(File.OpenRead(filename));

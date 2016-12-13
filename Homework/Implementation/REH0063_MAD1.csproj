@@ -73,13 +73,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseFunctions.cs" />
-    <Compile Include="dbscan.cs" />
+    <Compile Include="DBscan.cs" />
     <Compile Include="Graph.cs" />
     <Compile Include="Loader.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="qt.cs" />
+    <Compile Include="Qt.cs" />
     <Compile Include="Videogame.cs" />
   </ItemGroup>
   <ItemGroup>
