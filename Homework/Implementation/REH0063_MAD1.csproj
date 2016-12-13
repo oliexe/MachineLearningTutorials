@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{94533E08-BC5A-4035-86B5-CE5BE91FD7A5}</ProjectGuid>
+    <ProjectGuid>{E5F136F1-1C2C-411C-B11F-A3000A16DF69}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Homework</RootNamespace>
-    <AssemblyName>Homework</AssemblyName>
+    <RootNamespace>REH0063_MAD1</RootNamespace>
+    <AssemblyName>REH0063_MAD1</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -72,11 +72,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Videogame.cs" />
-    <Compile Include="Graph\Make.cs" />
-    <Compile Include="Helpers\LoaderHelper.cs" />
+    <Compile Include="BaseFunctions.cs" />
+    <Compile Include="dbscan.cs" />
+    <Compile Include="Graph.cs" />
+    <Compile Include="Loader.cs" />
+    <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="qt.cs" />
+    <Compile Include="Videogame.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

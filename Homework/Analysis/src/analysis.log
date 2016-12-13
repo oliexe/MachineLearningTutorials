@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.23)  11 DEC 2016 23:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.23)  11 DEC 2016 23:23
 entering extended mode
 **./analysis.tex
 (analysis.tex
@@ -704,13 +704,6 @@ Overfull \hbox (6.18025pt too wide) in paragraph at lines 113--114
 1/lmr/bx/n/10.95 Sony Playsta-
  []
 
-
-Overfull \hbox (11.20346pt too wide) in paragraph at lines 117--118
-\T1/lmr/bx/n/10.95 Xbox 360 (85 mil.)\T1/lmr/m/n/10.95 , \T1/lmr/bx/n/10.95 Pla
-ysta-tion 3 (84 mil.)\T1/lmr/m/n/10.95 , \T1/lmr/bx/n/10.95 Playsta-tion Portab
-le
- []
-
 [4 <./Rplot.png>] <Rplot03.png, id=122, 473.51906pt x 274.02374pt>
 File: Rplot03.png Graphic file (type png)
 
@@ -952,7 +945,7 @@ iles (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr6.pfb><C:/Program Files (x86)/Mi
 KTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
 s/type1/public/lm/lmr9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
 c/lm/lmsy10.pfb>
-Output written on analysis.pdf (14 pages, 447615 bytes).
+Output written on analysis.pdf (14 pages, 447587 bytes).
 PDF statistics:
  238 PDF objects out of 1000 (max. 8388607)
  38 named destinations out of 1000 (max. 500000)

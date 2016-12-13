@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Homework.Data
+﻿namespace REH0063_MAD1
 {
-    class Videogame
+    internal class Videogame
     {
         public int rank;
         public string name;
