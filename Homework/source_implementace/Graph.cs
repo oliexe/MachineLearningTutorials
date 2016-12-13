@@ -24,14 +24,13 @@ namespace REH0063_MAD1
 
             _graph.Series.Add(scatterSeries);
         }
-
         public void AddToGraph(List<double> x, List<double> y, int ClusterNum, byte r, byte g, byte b)
         {
             AddToGraph(x, y, ClusterNum, r, g, b, MarkerType.Circle);
         }
 
         /// <summary>
-        /// Generate PDF out of this instance of graph
+        /// Generate PDF out of this instance of graph (800x600)
         /// </summary>
         public void GenerateGraph(string name)
         {
@@ -39,13 +38,13 @@ namespace REH0063_MAD1
 
             using (var stream = File.Create("Output/" + name + "Clustering.pdf"))
             {
-                var pdfExporter = new PdfExporter { Width = 1000, Height = 1000 };
+                var pdfExporter = new PdfExporter { Width = 800, Height = 600 };
                 pdfExporter.Export(_graph, stream);
             }
         }
 
         /// <summary>
-        /// Get random color for cluster separation
+        /// Get random color RGB for cluster separation
         /// </summary>
         public byte[] GetRandomColor()
         {

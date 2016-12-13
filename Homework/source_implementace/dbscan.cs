@@ -9,15 +9,13 @@ namespace REH0063_MAD1
     internal class db
     {
         /// <summary>
-        /// Run DBSCAN and generate output
+        /// Clears videogame dataset from incomplete values and converts them into Point list
         /// </summary>
-        public db(List<Videogame> data, double eps, int minPts)
+        private static List<ClusterGame> ClearInput(List<Videogame> data)
         {
-            Console.WriteLine("DBSCAN Clustering....");
             List<Videogame> data_cleaned = new List<Videogame>();
-            List<Point> points = new List<Point>();
+            List<ClusterGame> points = new List<ClusterGame>();
 
-            // Throw off uncomplete data with 0 values - not to mess up clustering
             for (int i = 0; i < data.Count; i++)
             {
                 if (data[i]._euSales > 0)
@@ -26,55 +24,74 @@ namespace REH0063_MAD1
                 }
             }
 
-            // Convert cleaned data into "Point" structure used for clustering
             for (int i = 0; i < data_cleaned.Count; i++)
             {
-                points.Add(new Point(data_cleaned[i]._naSales, data_cleaned[i]._euSales, data_cleaned[i]._name));
+                points.Add(new ClusterGame(data_cleaned[i]._naSales, data_cleaned[i]._euSales, data_cleaned[i]._name));
             }
 
-            //BEGIN CLUSTERING!
-            List<List<Point>> clusters = GetClusters(points, eps, minPts);
+            return points;
+        }
+      
+        /// <summary>
+        /// Run DBSCAN and generate output
+        /// </summary>
+        public db(List<Videogame> data, double eps, int minPts)
+        {
+            Console.WriteLine("DBSCAN Clustering....");
+            List<ClusterGame> points = ClearInput(data);
+            List<List<ClusterGame>> clusters = StartClustering(points, eps, minPts);
 
-            //Generate graph and output files...
+            //Generate output text file
             using (StreamWriter writetext = new StreamWriter("output/DBclusters.txt"))
             {
+                //Create blank graph
                 Graph graf = new Graph();
 
+                //List of scatter points for graph
                 List<double> pointsX = new List<double>();
                 List<double> pointsY = new List<double>();
+                int sum = 0;
 
-                int total = 0;
+                //Clusters
                 for (int i = 0; i < clusters.Count; i++)
                 {
                     int count = clusters[i].Count;
-                    total += count;
-                    writetext.WriteLine("\nCluster {0} - {1} games :\n", i + 1, count);
-                    foreach (Point p in clusters[i])
+                    sum += count;
+
+                    //Write cluster into text file.
+                    writetext.WriteLine("\n Cluster :" + (i + 1) + " / " + count + " games :\n");
+                    foreach (ClusterGame p in clusters[i])
                     {
-                        writetext.Write("\n {0} " + p._name, p);
-                        pointsX.Add(p._X);
-                        pointsY.Add(p._Y);
+                        writetext.Write("\n" + p + "  " + p._name);
+                        pointsX.Add(p._NAsales);
+                        pointsY.Add(p._EUsales);
                     }
                     writetext.WriteLine();
 
+                    //Generate color for cluster and add to graph
                     byte[] color = graf.GetRandomColor();
                     graf.AddToGraph(pointsX, pointsY, i, color[0], color[1], color[2]);
                     pointsX.Clear();
                     pointsY.Clear();
                 }
-                total = points.Count - total;
-                if (total > 0)
+                sum = points.Count - sum;
+
+                //Noise points
+                if (sum > 0)
                 {
-                    writetext.WriteLine("\n {0} games as noise :\n", total);
-                    foreach (Point p in points)
+                    //Write noise points into text file
+                    writetext.WriteLine("\n" + sum + " games are noise\n");
+
+                    foreach (ClusterGame p in points)
                     {
-                        if (p._cluster == Point._noise)
+                        if (p._cluster == ClusterGame._isnoise)
                         {
-                            writetext.WriteLine("{0} " + p._name, p);
-                            pointsX.Add(p._X);
-                            pointsY.Add(p._Y);
+                            writetext.Write("\n" + p + "  " + p._name);
+                            pointsX.Add(p._NAsales);
+                            pointsY.Add(p._EUsales);
                         }
                     }
+                    //Add noise into graph with different marker (See graph class)
                     graf.AddToGraph(pointsX, pointsY, 900, 0, 0, 0, MarkerType.Cross);
                     writetext.WriteLine();
                     writetext.WriteLine();
@@ -83,76 +100,114 @@ namespace REH0063_MAD1
             }
         }
 
+        private static double square(double n)
+        {
+            return n *= n;
+        }
+
+        private static void MarkNoise(ClusterGame p)
+        {
+            p._cluster = ClusterGame._isnoise;
+        }
+
+        /// <summary>
+        /// Measures distance between two points
+        /// </summary>
+        public static double Dist(ClusterGame x, ClusterGame y)
+        {
+            double diffNA = y._NAsales - x._NAsales;
+            double diffEU = y._EUsales - x._EUsales;
+            return diffNA * diffNA + diffEU * diffEU;
+        }
+        
+        /// <summary>
+        /// Returns list of points in selected region around the specified point
+        /// </summary>
+        private static List<ClusterGame> GetNeighbours(List<ClusterGame> points, ClusterGame p, double region)
+        {
+            List<ClusterGame> reg = new List<ClusterGame>();
+
+            for (int i = 0; i < points.Count; i++)
+            {
+                double dist = Dist(p, points[i]);
+                if (dist <= region)
+                    reg.Add(points[i]);
+            }
+            return reg;
+        }
+        
         /// <summary>
         /// DBSCAN clustering function on the list of points
         /// </summary>
-        private static List<List<Point>> GetClusters(List<Point> points, double eps, int minPts)
+        private static List<List<ClusterGame>> StartClustering(List<ClusterGame> points, double region, int min_points)
         {
-            if (points == null) return null;
-            List<List<Point>> clusters = new List<List<Point>>();
-            eps *= eps; // square eps
-            int clusterId = 1;
-            for (int i = 0; i < points.Count; i++)
-            {
-                Point p = points[i];
-                if (p._cluster == Point._unclass)
-                {
-                    if (ExpandCluster(points, p, clusterId, eps, minPts)) clusterId++;
-                }
-            }
-            // sort out points into their clusters, if any
-            int maxClusterId = points.OrderBy(p => p._cluster).Last()._cluster;
-            if (maxClusterId < 1) return clusters; // no clusters, so list is empty
-            for (int i = 0; i < maxClusterId; i++) clusters.Add(new List<Point>());
+            region = square(region);
+            int ClstId = 1;
 
-            foreach (Point p in points)
+            if (points == null) return null;
+            List<List<ClusterGame>> clusters = new List<List<ClusterGame>>();
+
+            for (int counter = 0; counter < points.Count; counter++)
             {
-                if (p._cluster > 0) clusters[p._cluster - 1].Add(p);
+                ClusterGame p = points[counter];
+                if (p._cluster == ClusterGame._checked) if (CheckCluster(points, p, ClstId, region, min_points)) ClstId++;
             }
+
+            // Assign point to clusters
+            int max = points.OrderBy
+                (p => p._cluster).Last()._cluster;
+
+            if (max < 1)
+                return clusters;
+
+            for (int i = 0; i < max; i++)
+                clusters.Add(new List<ClusterGame>());
+
+            foreach (ClusterGame p in points)
+                if (p._cluster > 0) clusters[p._cluster - 1].Add(p);
 
             return clusters;
         }
-
-        private static List<Point> GetRegion(List<Point> points, Point p, double eps)
+       
+        /// <summary>
+        /// Check if the cluster can be expanded
+        /// </summary>
+        private static bool CheckCluster(List<ClusterGame> points, ClusterGame p, int clusterId, double region, int min_points)
         {
-            List<Point> region = new List<Point>();
-            for (int i = 0; i < points.Count; i++)
-            {
-                double dist = Point.Dist(p, points[i]);
-                if (dist <= eps) region.Add(points[i]);
-            }
-            return region;
-        }
+            List<ClusterGame> neighboursList = GetNeighbours(points, p, region);
 
-        private static bool ExpandCluster(List<Point> points, Point p, int clusterId, double eps, int minPts)
-        {
-            List<Point> seeds = GetRegion(points, p, eps);
-            if (seeds.Count < minPts) // no core point
+            // mark point as NOISE if the count of neighbours is bellow treshold
+            if (neighboursList.Count < min_points) 
             {
-                p._cluster = Point._noise;
+                MarkNoise(p);
                 return false;
             }
-            else // all points in seeds are density reachable from point 'p'
+            //Expand cluster if the count of neighbours is above treshold
+            else
             {
-                for (int i = 0; i < seeds.Count; i++) seeds[i]._cluster = clusterId;
-                seeds.Remove(p);
-                while (seeds.Count > 0)
+                //Remove points from the list
+                for (int i = 0; i < neighboursList.Count; i++) neighboursList[i]._cluster = clusterId;
+                neighboursList.Remove(p);
+                //Repeat for every neighbour point
+                while (neighboursList.Count > 0)
                 {
-                    Point currentP = seeds[0];
-                    List<Point> result = GetRegion(points, currentP, eps);
-                    if (result.Count >= minPts)
+                    ClusterGame current = neighboursList[0];
+
+                    List<ClusterGame> result = GetNeighbours(points, current, region);
+                    if (result.Count >= min_points)
                     {
                         for (int i = 0; i < result.Count; i++)
                         {
-                            Point resultP = result[i];
-                            if (resultP._cluster == Point._unclass || resultP._cluster == Point._noise)
+                            ClusterGame res = result[i];
+                            if (res._cluster == ClusterGame._checked || 
+                                res._cluster == ClusterGame._isnoise)
                             {
-                                if (resultP._cluster == Point._unclass) seeds.Add(resultP);
-                                resultP._cluster = clusterId;
+                                if (res._cluster == ClusterGame._checked) neighboursList.Add(res);
+                                res._cluster = clusterId;
                             }
                         }
                     }
-                    seeds.Remove(currentP);
+                    neighboursList.Remove(current);
                 }
                 return true;
             }

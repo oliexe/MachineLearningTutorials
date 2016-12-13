@@ -8,7 +8,7 @@ namespace REH0063_MAD1
     internal class Loader
     {
         /// <summary>
-        /// Load Video Game Sales CSV
+        /// Load Video Game Sales CSV + fix the errors in the CSV itself (There are some..)
         /// </summary>
         public List<Videogame> csv(string filename)
         {

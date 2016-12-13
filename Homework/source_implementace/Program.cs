@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 
 namespace REH0063_MAD1
 {
     internal static class DBSCAN
     {
+        
         //Separate lists (Not necessary, but just for convenience)
         private static List<double> _naSales_list = new List<double>();
         private static List<double> _euSales_list = new List<double>();
@@ -14,6 +17,8 @@ namespace REH0063_MAD1
 
         private static void Main(string[] args)
         {
+            var watch = Stopwatch.StartNew();
+            Console.WriteLine("Working on it...");
             //Load CSV into data structure Videogames
             Loader load = new Loader();
             List<Videogame> data = load.csv(@"C:\vgsales.csv");
@@ -31,14 +36,17 @@ namespace REH0063_MAD1
             //Print basic info for double based atributes...
             BasicInfo();
 
-            //dbscan clustering...
-            db sbscanClustering = new db(data, 1.0, 2);
+            //DBSCAN
+            //Nejlepší nastaveni: Region = 1 milion, Neighbours= 2hry
+            db dbscanClustering = new db(data, 1.0, 2);
 
-            //Quality treshold clustering...
-            qt qtClustering = new qt(data, 3);
+            //QT TEST
+            //Nejlepší nastavení Diameter = 3
+            //qt qtClustering = new qt(data, 3);
 
-            //Wait for user input...
-            Console.WriteLine("Done");
+            watch.Stop();
+            Console.WriteLine("Completed in: " + watch.ElapsedMilliseconds + "ms");
+            Console.WriteLine("Done, press enter to quit.");
             Console.ReadKey();
         }
 
@@ -48,42 +56,45 @@ namespace REH0063_MAD1
         public static void BasicInfo()
         {
             System.IO.Directory.CreateDirectory("Output");
-            Operations functions = new Operations();
 
-            Console.WriteLine("+++NORTH AMERICA+++");
-            Console.WriteLine("Variance: " + functions.Variance(_naSales_list));
-            Console.WriteLine("Deviation: " + functions.StandartDeviation(_naSales_list));
-            Console.WriteLine("Median: " + functions.Median(_naSales_list));
-            Console.WriteLine("Average: " + functions.Average(_naSales_list));
-            Console.WriteLine();
+            using (StreamWriter writetext = new StreamWriter("output/output.txt"))
+            {
+                Operations functions = new Operations();
 
-            Console.WriteLine("+++EUROPE+++");
-            Console.WriteLine("Variance: " + functions.Variance(_euSales_list));
-            Console.WriteLine("Deviation: " + functions.StandartDeviation(_euSales_list));
-            Console.WriteLine("Median: " + functions.Median(_euSales_list));
-            Console.WriteLine("Average: " + functions.Average(_euSales_list));
-            Console.WriteLine();
+            writetext.WriteLine("+++NORTH AMERICA+++");
+            writetext.WriteLine("Variance: " + functions.Variance(_naSales_list));
+            writetext.WriteLine("Deviation: " + functions.StandartDeviation(_naSales_list));
+            writetext.WriteLine("Median: " + functions.Median(_naSales_list));
+            writetext.WriteLine("Average: " + functions.Average(_naSales_list));
+            writetext.WriteLine();
 
-            Console.WriteLine("+++JAPAN+++");
-            Console.WriteLine("Variance: " + functions.Variance(_jpSales_list));
-            Console.WriteLine("Deviation: " + functions.StandartDeviation(_jpSales_list));
-            Console.WriteLine("Median: " + functions.Median(_jpSales_list));
-            Console.WriteLine("Average: " + functions.Average(_jpSales_list));
-            Console.WriteLine();
+            writetext.WriteLine("+++EUROPE+++");
+            writetext.WriteLine("Variance: " + functions.Variance(_euSales_list));
+            writetext.WriteLine("Deviation: " + functions.StandartDeviation(_euSales_list));
+            writetext.WriteLine("Median: " + functions.Median(_euSales_list));
+            writetext.WriteLine("Average: " + functions.Average(_euSales_list));
+            writetext.WriteLine();
 
-            Console.WriteLine("+++GLOBAL+++");
-            Console.WriteLine("Variance: " + functions.Variance(_otherSales_list));
-            Console.WriteLine("Deviation: " + functions.StandartDeviation(_otherSales_list));
-            Console.WriteLine("Median: " + functions.Median(_otherSales_list));
-            Console.WriteLine("Average: " + functions.Average(_otherSales_list));
-            Console.WriteLine();
+            writetext.WriteLine("+++JAPAN+++");
+            writetext.WriteLine("Variance: " + functions.Variance(_jpSales_list));
+            writetext.WriteLine("Deviation: " + functions.StandartDeviation(_jpSales_list));
+            writetext.WriteLine("Median: " + functions.Median(_jpSales_list));
+            writetext.WriteLine("Average: " + functions.Average(_jpSales_list));
+            writetext.WriteLine();
 
-            Console.WriteLine("+++GLOBAL+++");
-            Console.WriteLine("Variance: " + functions.Variance(_globalSales_list));
-            Console.WriteLine("Deviation: " + functions.StandartDeviation(_globalSales_list));
-            Console.WriteLine("Median: " + functions.Median(_globalSales_list));
-            Console.WriteLine("Average: " + functions.Average(_globalSales_list));
-            Console.WriteLine();
+            writetext.WriteLine("+++OTHER REGIONS+++");
+            writetext.WriteLine("Variance: " + functions.Variance(_otherSales_list));
+            writetext.WriteLine("Deviation: " + functions.StandartDeviation(_otherSales_list));
+            writetext.WriteLine("Median: " + functions.Median(_otherSales_list));
+            writetext.WriteLine("Average: " + functions.Average(_otherSales_list));
+            writetext.WriteLine();
+
+            writetext.WriteLine("+++GLOBAL+++");
+            writetext.WriteLine("Variance: " + functions.Variance(_globalSales_list));
+            writetext.WriteLine("Deviation: " + functions.StandartDeviation(_globalSales_list));
+            writetext.WriteLine("Median: " + functions.Median(_globalSales_list));
+            writetext.WriteLine("Average: " + functions.Average(_globalSales_list));
+            writetext.WriteLine();
 
             functions.Occurence(_naSales_list, "Output/naOccurences.csv");
             functions.Occurence(_euSales_list, "Output/euOccurences.csv");
@@ -91,8 +102,7 @@ namespace REH0063_MAD1
             functions.Occurence(_otherSales_list, "Output/otherOccurences.csv");
             functions.Occurence(_globalSales_list, "Output/globalOccurences.csv");
 
-            Console.ReadKey();
-            Console.Clear();
+            }
         }
     }
 }

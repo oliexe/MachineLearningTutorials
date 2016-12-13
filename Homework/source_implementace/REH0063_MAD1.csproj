@@ -76,7 +76,7 @@
     <Compile Include="DBscan.cs" />
     <Compile Include="Graph.cs" />
     <Compile Include="Loader.cs" />
-    <Compile Include="Point.cs" />
+    <Compile Include="ClusterGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Qt.cs" />
