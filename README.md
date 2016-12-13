@@ -56,4 +56,11 @@ https://networkdata.ics.uci.edu/data.php?id=105
 
 https://www.kaggle.com/gregorut/videogamesales
 
-+ TODO
++ Average, Median, Standart Deviation
++ Variance
++ Normal Distribution
++ Occurences
++ CDF, PDF
++ DSCAN Clustering
++ QUALITY THRESHOLD (QT) Clustering
+
