@@ -1,4 +1,4 @@
-## MAD 3 - Cvièení 1
+## MAD 3 - Cvièení 1 (25/9/17)
 ## Ondøej Øeháèek - REH0063
 
 install.packages("igraph")
@@ -7,12 +7,12 @@ library(igraph)
 ## --------------------1--------------------
 
 ## 1a) Random graph + plot
-rand <- sample_gnm(n = 200, m = 600)
+rand <- sample_gnm(n = 800, m = 600)
 plot(rand, vertex.size = 2, vertex.label = NA)
 
 ## 1b) Barabási–Albert model + plot
-bara <- make_tree(1000, children = 3, mode = "undirected")
-plot(bara, vertex.size = 2, vertex.label = NA)
+bara <- barabasi.game(200, power = 1.0, m = 600)
+plot(g, vertex.label = NA, vertex.size = 2)
 
 ## --------------------2--------------------
 

@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "mad3_cv1", "mad3_cv1\mad3_cv1.rxproj", "{1B862468-010C-4343-93FB-55E1E286A612}"
 EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "mad3_cv2", "mad3_cv2\mad3_cv2.rxproj", "{8B598EC9-D2D5-4AF1-B75C-3025EFB8E28D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1B862468-010C-4343-93FB-55E1E286A612}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B862468-010C-4343-93FB-55E1E286A612}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B862468-010C-4343-93FB-55E1E286A612}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B598EC9-D2D5-4AF1-B75C-3025EFB8E28D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B598EC9-D2D5-4AF1-B75C-3025EFB8E28D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B598EC9-D2D5-4AF1-B75C-3025EFB8E28D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B598EC9-D2D5-4AF1-B75C-3025EFB8E28D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
