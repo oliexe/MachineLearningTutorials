@@ -4,7 +4,7 @@ Coded in C# .NET, Microsoft R Open
 
 ***
 
-**Playground Set**
+**Playground**
 
 http://gerardnico.com/wiki/data_mining/weather
 
@@ -12,7 +12,7 @@ http://gerardnico.com/wiki/data_mining/weather
 
 ***
 
-**Iris flower data set**
+**Iris Flowers**
 
 http://archive.ics.uci.edu/ml/datasets/Iris
 
@@ -29,7 +29,7 @@ http://archive.ics.uci.edu/ml/datasets/Iris
 
 ***
 
-**Zachary's Karate Club (Network)**
+**Zachary's Karate Club**
 
 https://networkdata.ics.uci.edu/data.php?id=105
 
@@ -44,7 +44,7 @@ https://networkdata.ics.uci.edu/data.php?id=105
 
 ***
 
-**ActorsAndMovies (Network)**
+**Actors And Movies**
 
 + One-mode projection
 + Frequency, Relative frequency of degrees
@@ -53,7 +53,7 @@ https://networkdata.ics.uci.edu/data.php?id=105
 
 ***
 
-**Homework - Video Game Sales**
+**Video Game Sales**
 
 https://www.kaggle.com/gregorut/videogamesales
 
