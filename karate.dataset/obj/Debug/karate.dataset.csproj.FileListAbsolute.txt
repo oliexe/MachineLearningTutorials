@@ -10,3 +10,9 @@ C:\Users\olire\Documents\GitHub\MAD1\karate.dataset\obj\Debug\karate.dataset.pdb
 C:\Users\olire\Documents\GitHub\MAD1\karate.dataset\bin\Debug\karate.dataset.exe
 C:\Users\olire\Documents\GitHub\MAD1\karate.dataset\bin\Debug\karate.dataset.pdb
 C:\Users\olire\Documents\GitHub\MAD1\karate.dataset\obj\Debug\karate.dataset.csprojResolveAssemblyReference.cache
+C:\Users\olire\Documents\GitHub\MachineLearningExperiments\karate.dataset\bin\Debug\karate.dataset.exe.config
+C:\Users\olire\Documents\GitHub\MachineLearningExperiments\karate.dataset\bin\Debug\karate.dataset.exe
+C:\Users\olire\Documents\GitHub\MachineLearningExperiments\karate.dataset\bin\Debug\karate.dataset.pdb
+C:\Users\olire\Documents\GitHub\MachineLearningExperiments\karate.dataset\obj\Debug\karate.dataset.csprojResolveAssemblyReference.cache
+C:\Users\olire\Documents\GitHub\MachineLearningExperiments\karate.dataset\obj\Debug\karate.dataset.exe
+C:\Users\olire\Documents\GitHub\MachineLearningExperiments\karate.dataset\obj\Debug\karate.dataset.pdb

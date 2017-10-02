@@ -11,7 +11,9 @@ namespace karate.dataset
     {
         static void Main(string[] args)
         {
-            List<Node> data = InitData(@"C:\KarateClub.csv");
+            //List<Node> data = InitData(@"C:\Users\olire\Documents\GitHub\MachineLearningExperiments\data\KarateClub.csv");
+
+            List<Node> data = GenerateGraph(1, 20);
 
             foreach (Node item in data)
             {
@@ -44,21 +46,18 @@ namespace karate.dataset
             }
 
             Console.WriteLine();
-           Console.WriteLine("--------------------------------------------------------------");
-            Console.WriteLine();
             foreach (var group in groups)
             {
-                Console.Write(string.Format("STUPEN: {1}  VYSKYT:{0}", group.Count(), group.Key));
+                Console.Write(string.Format("stupen: {1}  se vyskytuje: {0}", group.Count(), group.Key));
                 double vysledek = (double)group.Count() / (double)count;
-                Console.WriteLine("  RELATIVNI CETNOST:" + Math.Round(vysledek, 4));
+                Console.WriteLine("  jeho tel. cetnost je: " + Math.Round(vysledek, 4));
             }
             Console.WriteLine();
-            Console.WriteLine("--------------------------------------------------------------");
             Console.WriteLine();
 
-            Console.WriteLine("Prumer : " + Average(degrees));
-            Console.WriteLine("Min : " + degrees.Min());
-            Console.WriteLine("Max : " + degrees.Max());
+            Console.WriteLine("Prumerny stupen vrcholu : " + Average(degrees));
+            Console.WriteLine("Minimalni stupen vrcholu : " + degrees.Min());
+            Console.WriteLine("Maximalni stupen vrcholu : " + degrees.Max());
         }
 
         public static double Average(int[] source)
@@ -67,10 +66,27 @@ namespace karate.dataset
             return sourceNumbers.Take(sourceNumbers.Count()).Average();
         }
 
-        public static void ConstructMatrix()
+        public static List<Node> GenerateGraph(double probablity, int numberOfVertices)
         {
+            Random rnd = new Random();
+            List<Node> Nodes = new List<Node>();
 
 
+            for (int i = 0; i < numberOfVertices; i++)
+            {
+                Nodes.Add(new Node(i));
+          
+
+            for (int j = 0; j < i; j++)
+            {
+                if (rnd.Next() < probablity)
+                {
+                    Nodes[i].AddNeighbour(j);
+                }
+
+            }
+            }
+            return Nodes;
         }
 
         public static List<Node> InitData(string filename)
